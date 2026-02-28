@@ -593,8 +593,8 @@
                 </svg>
                 Admin Portal
             </div>
-            <h1>Welcome back ðŸ‘‹</h1>
-            <p class="sub">Sign in to manage RJ Tutorials â€” courses, students &amp; more.</p>
+            <h1>Welcome back </h1>
+            <p class="sub">Sign in to manage RJ Tutorials courses, students &amp; more.</p>
 
             @if ($errors->any())
                 <div class="alert-error">
@@ -647,7 +647,8 @@
                             </svg>
                         </span>
                         <input id="password" type="password" name="password" required autocomplete="current-password"
-                            placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" class="{{ $errors->has('password') ? 'is-error' : '' }}">
+                            placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                            class="{{ $errors->has('password') ? 'is-error' : '' }}">
                         <button type="button" class="toggle-pw" onclick="togglePw()" title="Show/hide password">
                             <svg id="eye-icon" width="16" height="16" fill="none" viewBox="0 0 24 24">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor"
@@ -711,4 +712,5 @@
 </body>
 
 </html>
+
 </html>
