@@ -1,4 +1,4 @@
-@extends('frontend.layout.main')
+@extends('Frontend.layout.main')
 
 @section('title', ($homeSeo->seo_title ?: 'RJ TUTORIALS – Expert Coaching for JEE, NEET & MHCET'))
 
