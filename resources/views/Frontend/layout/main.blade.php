@@ -204,9 +204,9 @@
                         style="margin-bottom: 15px;">
                 </div>
                 <input type="hidden" name="clientMailID" value="dr.rohit261286@gmail.com">
-                <input name="website" type="hidden" value="rjtutorialseducare.co.in/thanku" />
-                <input name="loginID" type="hidden" value="2158" />
-                <input name="OrderID" type="hidden" value="2762" />
+                <input name="website" type="hidden" value="rjtutorialseducare.co.in/thank" />
+                <input name="loginId" type="hidden" value="2158" />
+                <input name="orderId" type="hidden" value="2762" />
                 <button type="submit" class="btn btn-block" style="background: #8b3777; color:#fff; border: 0px;"><span
                         class="fa fa-paper-plane"></span> Submit</button>
             </form>
