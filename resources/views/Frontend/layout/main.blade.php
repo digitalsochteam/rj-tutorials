@@ -193,37 +193,22 @@
                 </p>
             </div>
             <!-- Form -->
-            <form method="post" action="{{ route('enquiry.store') }}">
-                @csrf
-                <input type="hidden" name="subject" value="Popup Enquiry">
-                <div style="margin-bottom:.85rem;">
-                    <input type="text" name="name" placeholder="Your Name *" required style="width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8f0;
-                        border-radius:8px;font-size:.9rem;outline:none;box-sizing:border-box;
-                        transition:border-color .2s;" onfocus="this.style.borderColor='#e8232a'"
-                        onblur="this.style.borderColor='#e2e8f0'">
+            <form method="post" action="https://form.digitalsochmedia.com/thanku.php">
+                <div class="form-group" style="margin-bottom: 0px;">
+                    <input type="text" name="name" class="form-control" placeholder="Enter Your Name"
+                        style="margin-bottom: 15px;" />
+                    <input type="text" class="form-control" name="mobile" pattern="[0-9]{10,10}" autocomplete="off"
+                        maxlength="10" id="extra7" onKeyPress="return isNumber(event)" placeholder="Enter Mobile Number"
+                        aria-describedby="basic-addon1" style="border: 2px solid #8b3777; margin-bottom: 15px;">
+                    <input type="text" class="form-control" name="msg" placeholder="Enter Your Message"
+                        style="margin-bottom: 15px;">
                 </div>
-                <div style="margin-bottom:.85rem;">
-                    <input type="tel" name="phone" placeholder="Phone Number *" required pattern="[0-9+\-\s]{7,15}"
-                        style="width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8f0;
-                        border-radius:8px;font-size:.9rem;outline:none;box-sizing:border-box;
-                        transition:border-color .2s;" onfocus="this.style.borderColor='#e8232a'"
-                        onblur="this.style.borderColor='#e2e8f0'">
-                </div>
-                <div style="margin-bottom:1rem;">
-                    <textarea name="message" placeholder="Your Message (optional)" rows="3" style="width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8f0;
-                        border-radius:8px;font-size:.9rem;outline:none;resize:none;box-sizing:border-box;
-                        transition:border-color .2s;" onfocus="this.style.borderColor='#e8232a'"
-                        onblur="this.style.borderColor='#e2e8f0'"></textarea>
-                </div>
-
-
-                <button type="submit" style="
-                    width:100%;padding:.75rem;background:#e8232a;color:#fff;border:none;
-                    border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer;
-                    transition:background .2s;" onmouseover="this.style.background='#c41e24'"
-                    onmouseout="this.style.background='#e8232a'">
-                    Send Enquiry
-                </button>
+                <input type="hidden" name="clientMailID" value="dr.rohit261286@gmail.com">
+                <input name="website" type="hidden" value="rjtutorialseducare.co.in/thanku" />
+                <input name="loginID" type="hidden" value="2158" />
+                <input name="OrderID" type="hidden" value="2762" />
+                <button type="submit" class="btn btn-block" style="background: #8b3777; color:#fff; border: 0px;"><span
+                        class="fa fa-paper-plane"></span> Submit</button>
             </form>
             <!-- Skip -->
             <p style="text-align:center;margin:.8rem 0 0;font-size:.78rem;color:#94a3b8;">
