@@ -84,6 +84,8 @@ return [
 
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 
+    'migrate_secret_key' => env('MIGRATE_SECRET_KEY', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key

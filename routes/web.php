@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
 use App\Models\TeamMember;
@@ -22,6 +23,9 @@ use App\Models\HomeSeo;
 use App\Models\Testimonial;
 use App\Models\FeesContent;
 use App\Models\FeeStructure;
+
+
+
 
 Route::get('/', function () {
     $about        = AboutUs::instance();
@@ -160,3 +164,28 @@ Route::get('/courses/{slug}', function (string $slug) {
         ->orderBy('sort_order')->take(5)->get();
     return view('Frontend.course-detail', compact('course', 'prev', 'next', 'otherCourses'));
 })->name('courses.show');
+
+/*
+|--------------------------------------------------------------------------
+| Secure Migration Route (for live server — shared hosting without SSH)
+| Usage: /run-migrations?key=YOUR_SECRET_KEY
+| Set MIGRATE_SECRET_KEY in your .env on the live server.
+|--------------------------------------------------------------------------
+*/
+Route::get('/run-migrations', function () {
+    $secret = config('app.migrate_secret_key');
+
+    if (empty($secret) || request('key') !== $secret) {
+        abort(403, 'Forbidden.');
+    }
+
+    try {
+        Artisan::call('migrate', ['--force' => true]);
+        $output = Artisan::output();
+        return response('<pre style="font-family:monospace;padding:1rem;">Migration complete!
+
+' . htmlspecialchars($output) . '</pre>');
+    } catch (\Throwable $e) {
+        return response('<pre style="font-family:monospace;padding:1rem;color:red;">Error: ' . htmlspecialchars($e->getMessage()) . '</pre>', 500);
+    }
+});
