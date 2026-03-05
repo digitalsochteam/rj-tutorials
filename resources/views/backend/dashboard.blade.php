@@ -199,8 +199,8 @@
                     </svg>
                 </div>
                 <div>
-                    <div class="quick-label">Upload Image</div>
-                    <div class="quick-sublabel">{{ $galleryImages->count() }} images</div>
+                    <div class="quick-label">Gallery</div>
+                    <div class="quick-sublabel">{{ $galleryImages->count() }} media items</div>
                 </div>
             </a>
             <a href="{{ route('dashboard') }}?panel=enquiries" class="quick-card"
@@ -652,9 +652,14 @@
         <div class="section-header">
             <div>
                 <div class="section-title">Gallery</div>
-                <div class="section-sub">Manage your photo gallery.</div>
+                <div class="section-sub">Manage photos &amp; videos.</div>
             </div>
-            <a href="{{ route('gallery.create') }}" class="btn-primary" style="text-decoration:none;">+ Upload Image</a>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+                <a href="{{ route('gallery.create', ['type' => 'image']) }}" class="btn-primary"
+                    style="text-decoration:none;">+ Upload Image</a>
+                <a href="{{ route('gallery.create', ['type' => 'video']) }}" class="btn-secondary"
+                    style="text-decoration:none;">+ Add Video</a>
+            </div>
         </div>
 
         @if(session('gallery_success'))
@@ -672,16 +677,22 @@
                     </svg>
                 </div>
                 <p>No images yet.</p>
-                <a href="{{ route('gallery.create') }}" class="btn-primary" style="text-decoration:none;">Upload First Image</a>
+                <div style="display:flex;gap:.5rem;justify-content:center;">
+                    <a href="{{ route('gallery.create', ['type' => 'image']) }}" class="btn-primary"
+                        style="text-decoration:none;">Upload First Image</a>
+                    <a href="{{ route('gallery.create', ['type' => 'video']) }}" class="btn-secondary"
+                        style="text-decoration:none;">Add Video</a>
+                </div>
             </div>
         @else
             <div style="overflow-x:auto;">
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th style="width:80px;">Image</th>
+                            <th style="width:80px;">Preview</th>
                             <th>Title</th>
                             <th>Category</th>
+                            <th>Type</th>
                             <th>Sort</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -691,8 +702,19 @@
                         @foreach($galleryImages as $img)
                             <tr>
                                 <td>
-                                    <img src="{{ asset('storage/' . $img->image) }}" alt="{{ $img->title }}"
-                                        style="width:60px;height:45px;object-fit:cover;border-radius:6px;">
+                                    @if($img->isVideo())
+                                        <div
+                                            style="width:60px;height:45px;border-radius:6px;background:#0f172a;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+                                            @if($img->thumbnail)
+                                                <img src="{{ $img->thumbnail }}" alt="{{ $img->title }}"
+                                                    style="width:100%;height:100%;object-fit:cover;opacity:.6;">
+                                            @endif
+                                            <span style="position:absolute;color:#fff;font-size:1.1rem;">▶</span>
+                                        </div>
+                                    @else
+                                        <img src="{{ asset('storage/' . $img->image) }}" alt="{{ $img->title }}"
+                                            style="width:60px;height:45px;object-fit:cover;border-radius:6px;">
+                                    @endif
                                 </td>
                                 <td>
                                     <div style="font-weight:600;font-size:.875rem;color:#1e293b;">{{ $img->title }}</div>
@@ -703,6 +725,12 @@
                                     @endif
                                 </td>
                                 <td><span class="badge">{{ $img->category }}</span></td>
+                                <td>
+                                    <span class="badge"
+                                        style="background:{{ $img->isVideo() ? '#dbeafe' : '#dcfce7' }};color:{{ $img->isVideo() ? '#1d4ed8' : '#15803d' }};">
+                                        {{ $img->isVideo() ? 'Video' : 'Image' }}
+                                    </span>
+                                </td>
                                 <td style="color:#64748b;font-size:.875rem;">{{ $img->sort_order }}</td>
                                 <td>
                                     <span class="status-badge {{ $img->is_active ? 'published' : 'draft' }}">
@@ -1151,53 +1179,53 @@
             panelId: 'panel-overview',
                 navId: 'nav-overview',
                     title: 'Dashboard',
-                            },
+                                },
         about: {
             panelId: 'panel-about',
                 navId: 'nav-about',
                     title: 'About Us',
-                            },
+                                },
         team: {
             panelId: 'panel-team',
                 navId: 'nav-team',
                     title: 'Team',
-                            },
+                                },
         blog: {
             panelId: 'panel-blog',
                 navId: 'nav-blog',
                     title: 'Blog',
-                            },
+                                },
         courses: {
             panelId: 'panel-courses',
                 navId: 'nav-courses',
                     title: 'Courses',
-                            },
+                                },
         gallery: {
             panelId: 'panel-gallery',
                 navId: 'nav-gallery',
                     title: 'Gallery',
-                            },
+                                },
         enquiries: {
             panelId: 'panel-enquiries',
                 navId: 'nav-enquiries',
                     title: 'Enquiries',
-                            },
+                                },
         seo: {
             panelId: 'panel-seo',
                 navId: 'nav-seo',
                     title: 'Home SEO',
-                            },
+                                },
         testimonials: {
             panelId: 'panel-testimonials',
                 navId: 'nav-testimonials',
                     title: 'Testimonials',
-                            },
+                                },
         fees: {
             panelId: 'panel-fees',
                 navId: 'nav-fees',
                     title: 'Fees Structure',
-                            },
-                        };
+                                },
+                            };
 
         function switchPanel(name) {
             if (!panels[name]) return;
