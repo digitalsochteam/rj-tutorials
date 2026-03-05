@@ -151,6 +151,109 @@
     </style>
 
     @include('Frontend.layout.script')
+
+    <!-- ══ ENQUIRY POPUP ══ -->
+    <div id="enquiryPopup" style="
+        display:none;position:fixed;inset:0;z-index:99999;
+        background:rgba(5,5,15,.7);backdrop-filter:blur(4px);
+        align-items:center;justify-content:center;">
+        <div style="
+            background:#fff;border-radius:16px;padding:2rem 2rem 1.6rem;
+            width:100%;max-width:420px;margin:1rem;position:relative;
+            box-shadow:0 24px 80px rgba(0,0,0,.35);">
+            <!-- Close -->
+            <button onclick="closeEnquiryPopup()" style="
+                position:absolute;top:12px;right:14px;background:none;border:none;
+                font-size:1.3rem;cursor:pointer;color:#94a3b8;line-height:1;" title="Close">
+                &times;
+            </button>
+            <!-- Header -->
+            <div style="text-align:center;margin-bottom:1.2rem;">
+                <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;
+                    letter-spacing:.08em;color:#e8232a;margin-bottom:.3rem;">Free Consultation</div>
+                <h3 style="margin:0;font-size:1.35rem;font-weight:800;color:#0f172a;line-height:1.25;">
+                    Get in Touch With Us
+                </h3>
+                <p style="margin:.4rem 0 0;font-size:.85rem;color:#64748b;">
+                    Fill in your details and we'll call you back shortly.
+                </p>
+            </div>
+            <!-- Form -->
+            <form action="{{ route('enquiry.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="subject" value="Popup Enquiry">
+                <div style="margin-bottom:.85rem;">
+                    <input type="text" name="name" placeholder="Your Name *" required style="width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8f0;
+                        border-radius:8px;font-size:.9rem;outline:none;box-sizing:border-box;
+                        transition:border-color .2s;" onfocus="this.style.borderColor='#e8232a'"
+                        onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+                <div style="margin-bottom:.85rem;">
+                    <input type="tel" name="phone" placeholder="Phone Number *" required pattern="[0-9+\-\s]{7,15}"
+                        style="width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8f0;
+                        border-radius:8px;font-size:.9rem;outline:none;box-sizing:border-box;
+                        transition:border-color .2s;" onfocus="this.style.borderColor='#e8232a'"
+                        onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+                <div style="margin-bottom:1rem;">
+                    <textarea name="message" placeholder="Your Message (optional)" rows="3" style="width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8f0;
+                        border-radius:8px;font-size:.9rem;outline:none;resize:none;box-sizing:border-box;
+                        transition:border-color .2s;" onfocus="this.style.borderColor='#e8232a'"
+                        onblur="this.style.borderColor='#e2e8f0'"></textarea>
+                </div>
+                <button type="submit" style="
+                    width:100%;padding:.75rem;background:#e8232a;color:#fff;border:none;
+                    border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer;
+                    transition:background .2s;" onmouseover="this.style.background='#c41e24'"
+                    onmouseout="this.style.background='#e8232a'">
+                    Send Enquiry
+                </button>
+            </form>
+            <!-- Skip -->
+            <p style="text-align:center;margin:.8rem 0 0;font-size:.78rem;color:#94a3b8;">
+                <a href="#" onclick="closeEnquiryPopup();return false;"
+                    style="color:#94a3b8;text-decoration:underline;">No thanks, maybe later</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var POPUP_KEY = 'rjt_popup_seen';
+            var DELAY_MS = 4000; // show after 4 seconds
+
+            function showEnquiryPopup() {
+                var el = document.getElementById('enquiryPopup');
+                el.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            window.closeEnquiryPopup = function () {
+                document.getElementById('enquiryPopup').style.display = 'none';
+                document.body.style.overflow = '';
+                try { sessionStorage.setItem(POPUP_KEY, '1'); } catch (e) { }
+            };
+
+            // Close on backdrop click
+            document.getElementById('enquiryPopup').addEventListener('click', function (e) {
+                if (e.target === this) closeEnquiryPopup();
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeEnquiryPopup();
+            });
+
+            // Show once per session
+            try {
+                if (!sessionStorage.getItem(POPUP_KEY)) {
+                    setTimeout(showEnquiryPopup, DELAY_MS);
+                }
+            } catch (e) {
+                setTimeout(showEnquiryPopup, DELAY_MS);
+            }
+        })();
+    </script>
 </body>
 
 </html>
