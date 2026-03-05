@@ -183,7 +183,7 @@
                         <h4 style="font-size:1.1rem;font-weight:800;margin-bottom:.5rem;color:#fff;">Enroll Now</h4>
                         <p style="font-size:.875rem;opacity:.9;margin-bottom:1.25rem;">Get started with expert guidance from
                             our faculty.</p>
-                        <a href="tel:8879552477"
+                        <a href="tel:8929765663"
                             style="display:inline-block;background:#fff;color:var(--thm-base,#66003b);font-size:.85rem;font-weight:800;padding:.6rem 1.4rem;border-radius:30px;text-decoration:none;">
                             <span class="fas fa-phone"></span> Call Now
                         </a>
