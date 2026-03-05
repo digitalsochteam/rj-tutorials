@@ -219,7 +219,6 @@
 
     <script>
         (function () {
-            var POPUP_KEY = 'rjt_popup_seen';
             var DELAY_MS = 4000; // show after 4 seconds
 
             function showEnquiryPopup() {
@@ -231,7 +230,6 @@
             window.closeEnquiryPopup = function () {
                 document.getElementById('enquiryPopup').style.display = 'none';
                 document.body.style.overflow = '';
-                try { sessionStorage.setItem(POPUP_KEY, '1'); } catch (e) { }
             };
 
             // Close on backdrop click
@@ -244,14 +242,8 @@
                 if (e.key === 'Escape') closeEnquiryPopup();
             });
 
-            // Show once per session
-            try {
-                if (!sessionStorage.getItem(POPUP_KEY)) {
-                    setTimeout(showEnquiryPopup, DELAY_MS);
-                }
-            } catch (e) {
-                setTimeout(showEnquiryPopup, DELAY_MS);
-            }
+            // Show on every page load
+            setTimeout(showEnquiryPopup, DELAY_MS);
         })();
     </script>
 </body>
