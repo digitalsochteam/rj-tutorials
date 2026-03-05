@@ -57,8 +57,12 @@
         <span class="scroll-to-top__text"> Go Back Top</span>
     </a>
 
-    {{-- Floating WhatsApp & Call Buttons --}}
+    {{-- Floating WhatsApp, Call & Enquire Buttons --}}
     <div class="floating-buttons">
+        <button onclick="showEnquiryPopup()" class="floating-btn floating-enquire" aria-label="Enquire Now">
+            <i class="fas fa-comment-dots"></i>
+            <span class="floating-btn__label">Enquire Now</span>
+        </button>
         <a href="https://wa.me/918879552477" class="floating-btn floating-whatsapp" target="_blank"
             rel="noopener noreferrer" aria-label="Chat on WhatsApp">
             <i class="fab fa-whatsapp"></i>
@@ -116,6 +120,16 @@
 
         .floating-call:hover {
             background-color: #0062cc;
+        }
+
+        .floating-enquire {
+            background-color: #e8232a;
+            border: none;
+            cursor: pointer;
+        }
+
+        .floating-enquire:hover {
+            background-color: #c41e24;
         }
 
         .floating-btn__label {
@@ -221,11 +235,11 @@
         (function () {
             var DELAY_MS = 4000; // show after 4 seconds
 
-            function showEnquiryPopup() {
+            window.showEnquiryPopup = function () {
                 var el = document.getElementById('enquiryPopup');
                 el.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
-            }
+            };
 
             window.closeEnquiryPopup = function () {
                 document.getElementById('enquiryPopup').style.display = 'none';
@@ -243,7 +257,7 @@
             });
 
             // Show on every page load
-            setTimeout(showEnquiryPopup, DELAY_MS);
+            setTimeout(window.showEnquiryPopup, DELAY_MS);
         })();
     </script>
 </body>
