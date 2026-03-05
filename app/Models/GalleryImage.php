@@ -9,10 +9,10 @@ class GalleryImage extends Model
     protected $fillable = [
         'title',
         'category',
-        'caption',
         'media_type',
         'image',
         'video_url',
+        'video_file',
         'sort_order',
         'is_active',
     ];
@@ -32,6 +32,11 @@ class GalleryImage extends Model
         return $this->media_type === 'video';
     }
 
+    public function isLocalVideo(): bool
+    {
+        return $this->media_type === 'video' && !empty($this->video_file);
+    }
+
     /** Extract YouTube video ID from various URL formats. */
     public function getYoutubeIdAttribute(): ?string
     {
@@ -42,7 +47,7 @@ class GalleryImage extends Model
         return null;
     }
 
-    /** Return a safe iframe-ready embed URL. */
+    /** Return a safe iframe-ready embed URL (YouTube/Vimeo only). */
     public function getEmbedUrlAttribute(): ?string
     {
         if (!$this->video_url) return null;
@@ -55,11 +60,17 @@ class GalleryImage extends Model
             return 'https://player.vimeo.com/video/' . $m[1] . '?autoplay=1';
         }
 
-        // Already an embed URL or direct video file
         return $this->video_url;
     }
 
-    /** Best thumbnail URL for display (custom upload, YouTube auto-thumb, or placeholder). */
+    /** Public URL for locally uploaded video file. */
+    public function getVideoSrcAttribute(): ?string
+    {
+        if (!$this->video_file) return null;
+        return asset('storage/' . $this->video_file);
+    }
+
+    /** Best thumbnail URL for display. */
     public function getThumbnailAttribute(): string
     {
         if ($this->image) {

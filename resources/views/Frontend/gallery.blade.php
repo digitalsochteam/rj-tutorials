@@ -56,7 +56,8 @@
                         {{-- Video card --}}
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 gallery-item"
                             data-category="{{ Str::lower($image->category) }}" data-type="video"
-                            data-embed="{{ $image->embed_url }}" data-title="{{ $image->title }}" data-cat="{{ $image->category }}">
+                            data-embed="{{ $image->embed_url }}" data-video-src="{{ $image->video_src }}"
+                            data-title="{{ $image->title }}" data-cat="{{ $image->category }}">
                             <div class="gallery-card" onclick="openVideoLightbox(this)">
                                 <img src="{{ $image->thumbnail }}" alt="{{ $image->title }}" class="gallery-card__img">
                                 <div class="gallery-card__overlay">
@@ -124,26 +125,32 @@
                 <img id="lbImage" src="" alt="" class="gallery-lightbox__img">
             </div>
 
-            <!-- Video iframe (shown for videos) -->
+            <!-- Video iframe (YouTube/Vimeo) -->
             <div class="gallery-lightbox__video-wrap" id="lb-video-wrap" style="display:none;">
                 <iframe id="lbIframe" src="" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"
                     style="width:80vw;max-width:900px;height:50.625vw;max-height:506px;border-radius:12px;"></iframe>
             </div>
 
-            <!-- Next -->
-            <button class="gallery-lightbox__nav gallery-lightbox__nav--next" id="lbNext" onclick="shiftLightbox(1)"
-                title="Next">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-
-            <!-- Caption -->
-            <div class="gallery-lightbox__caption">
-                <div id="lbTitle" class="gallery-lightbox__caption-title"></div>
-                <div id="lbCat" class="gallery-lightbox__caption-cat"></div>
-                <div id="lbCounter" class="gallery-lightbox__caption-counter"></div>
+            <!-- Local video (HTML5) -->
+            <div id="lb-local-video-wrap" style="display:none;">
+                <video id="lbLocalVideo" controls autoplay
+                    style="width:80vw;max-width:900px;max-height:68vh;border-radius:12px;background:#000;"></video>
             </div>
-
         </div>
+
+        <!-- Next -->
+        <button class="gallery-lightbox__nav gallery-lightbox__nav--next" id="lbNext" onclick="shiftLightbox(1)"
+            title="Next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Caption -->
+        <div class="gallery-lightbox__caption">
+            <div id="lbTitle" class="gallery-lightbox__caption-title"></div>
+            <div id="lbCat" class="gallery-lightbox__caption-cat"></div>
+            <div id="lbCounter" class="gallery-lightbox__caption-counter"></div>
+        </div>
+
     </div>
     <!-- /Lightbox -->
 
@@ -479,19 +486,29 @@
         /* ─── Video lightbox ─── */
         function openVideoLightbox(cardEl) {
             const item = cardEl.closest('.gallery-item');
+            const videoSrc = item.dataset.videoSrc;
             const embed = item.dataset.embed;
             const title = item.dataset.title;
             const cat = item.dataset.cat;
 
             document.getElementById('lb-img-wrap').style.display = 'none';
-            document.getElementById('lb-video-wrap').style.display = '';
-            document.getElementById('lbIframe').src = embed || '';
-            document.getElementById('lbTitle').textContent = title || '';
-            document.getElementById('lbCat').textContent = cat || '';
-            document.getElementById('lbCounter').textContent = '';
+            document.getElementById('lb-video-wrap').style.display = 'none';
+            document.getElementById('lb-local-video-wrap').style.display = 'none';
             document.getElementById('lbPrev').style.display = 'none';
             document.getElementById('lbNext').style.display = 'none';
 
+            if (videoSrc) {
+                const vid = document.getElementById('lbLocalVideo');
+                vid.src = videoSrc;
+                document.getElementById('lb-local-video-wrap').style.display = '';
+            } else {
+                document.getElementById('lbIframe').src = embed || '';
+                document.getElementById('lb-video-wrap').style.display = '';
+            }
+
+            document.getElementById('lbTitle').textContent = title || '';
+            document.getElementById('lbCat').textContent = cat || '';
+            document.getElementById('lbCounter').textContent = '';
             document.getElementById('galleryLightbox').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
@@ -548,6 +565,7 @@
             // Ensure image wrap is visible (may have been hidden by a previous video)
             document.getElementById('lb-img-wrap').style.display = '';
             document.getElementById('lb-video-wrap').style.display = 'none';
+            document.getElementById('lb-local-video-wrap').style.display = 'none';
             document.getElementById('lbPrev').style.display = '';
             document.getElementById('lbNext').style.display = '';
             updateLightbox(items);
@@ -558,66 +576,67 @@
         function closeLightbox() {
             lightbox.classList.remove('open');
             document.body.style.overflow = '';
-            // Stop video playback when closing
+            // Stop all video on close
             document.getElementById('lbIframe').src = '';
+            const localVid = document.getElementById('lbLocalVideo');
+            localVid.pause(); localVid.src = '';
             document.getElementById('lb-img-wrap').style.display = '';
             document.getElementById('lb-video-wrap').style.display = 'none';
-            document.getElementById('lbPrev').style.display = '';
-            document.getElementById('lbNext').style.display = '';
+            document.getElementById('lb-local-video-wrap').style.display = 'none';
         }
 
         function shiftLightbox(dir) {
-            const items = getVisibleItems();
-            const next = lbIndex + dir;
-            if (next < 0 || next >= items.length) return;
-            lbIndex = next;
-            lbImg.classList.add('fading');
-            setTimeout(() => {
-                updateLightbox(items);
-                lbImg.classList.remove('fading');
-            }, 220);
-        }
+                const items = getVisibleItems();
+                const next = lbIndex + dir;
+                if (next < 0 || next >= items.length) return;
+                lbIndex = next;
+                lbImg.classList.add('fading');
+                setTimeout(() => {
+                    updateLightbox(items);
+                    lbImg.classList.remove('fading');
+                }, 220);
+            }
 
-        function updateLightbox(items) {
-            const el = items[lbIndex];
-            const img = el.querySelector('.gallery-card__img');
-            const label = el.querySelector('.gallery-card__label');
-            const cat = el.querySelector('.gallery-card__cat');
+            function updateLightbox(items) {
+                const el = items[lbIndex];
+                const img = el.querySelector('.gallery-card__img');
+                const label = el.querySelector('.gallery-card__label');
+                const cat = el.querySelector('.gallery-card__cat');
 
-            lbImg.src = img ? img.src : '';
-            lbImg.alt = img ? img.alt : '';
-            document.getElementById('lbTitle').textContent = label ? label.textContent : '';
-            document.getElementById('lbCat').textContent = cat ? cat.textContent : '';
-            document.getElementById('lbCounter').textContent = (lbIndex + 1) + ' / ' + items.length;
+                lbImg.src = img ? img.src : '';
+                lbImg.alt = img ? img.alt : '';
+                document.getElementById('lbTitle').textContent = label ? label.textContent : '';
+                document.getElementById('lbCat').textContent = cat ? cat.textContent : '';
+                document.getElementById('lbCounter').textContent = (lbIndex + 1) + ' / ' + items.length;
 
-            document.getElementById('lbPrev').disabled = lbIndex === 0;
-            document.getElementById('lbNext').disabled = lbIndex === items.length - 1;
-        }
+                document.getElementById('lbPrev').disabled = lbIndex === 0;
+                document.getElementById('lbNext').disabled = lbIndex === items.length - 1;
+            }
 
-        /* ─── Keyboard navigation ─── */
-        document.addEventListener('keydown', e => {
-            if (!lightbox.classList.contains('open')) return;
-            if (e.key === 'ArrowLeft') shiftLightbox(-1);
-            if (e.key === 'ArrowRight') shiftLightbox(1);
-            if (e.key === 'Escape') closeLightbox();
-        });
-
-        /* Re-index onclick after filter already ran once on load */
-        document.addEventListener('DOMContentLoaded', () => {
-            getVisibleItems().forEach((el, i) => {
-                el.querySelector('.gallery-card').setAttribute('onclick', `openLightbox(${i})`);
+            /* ─── Keyboard navigation ─── */
+            document.addEventListener('keydown', e => {
+                if (!lightbox.classList.contains('open')) return;
+                if (e.key === 'ArrowLeft') shiftLightbox(-1);
+                if (e.key === 'ArrowRight') shiftLightbox(1);
+                if (e.key === 'Escape') closeLightbox();
             });
-            /* Also re-index when filter changes */
-            document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    setTimeout(() => {
-                        getVisibleItems().forEach((el, i) => {
-                            el.querySelector('.gallery-card').setAttribute('onclick', `openLightbox(${i})`);
-                        });
-                    }, 50);
+
+            /* Re-index onclick after filter already ran once on load */
+            document.addEventListener('DOMContentLoaded', () => {
+                getVisibleItems().forEach((el, i) => {
+                    el.querySelector('.gallery-card').setAttribute('onclick', `openLightbox(${i})`);
+                });
+                /* Also re-index when filter changes */
+                document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        setTimeout(() => {
+                            getVisibleItems().forEach((el, i) => {
+                                el.querySelector('.gallery-card').setAttribute('onclick', `openLightbox(${i})`);
+                            });
+                        }, 50);
+                    });
                 });
             });
-        });
     </script>
 
 @endsection
