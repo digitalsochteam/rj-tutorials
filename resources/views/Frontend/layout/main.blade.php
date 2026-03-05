@@ -193,7 +193,7 @@
                 </p>
             </div>
             <!-- Form -->
-            <form method="post" action="https://form.digitalsochmedia.com/thanku.php">
+            <form method="post" action="{{ route('enquiry.store') }}">
                 @csrf
                 <input type="hidden" name="subject" value="Popup Enquiry">
                 <div style="margin-bottom:.85rem;">
@@ -203,22 +203,18 @@
                         onblur="this.style.borderColor='#e2e8f0'">
                 </div>
                 <div style="margin-bottom:.85rem;">
-                    <input type="tel" name="mobile" placeholder="Phone Number *" required pattern="[0-9+\-\s]{7,15}"
+                    <input type="tel" name="phone" placeholder="Phone Number *" required pattern="[0-9+\-\s]{7,15}"
                         style="width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8f0;
                         border-radius:8px;font-size:.9rem;outline:none;box-sizing:border-box;
                         transition:border-color .2s;" onfocus="this.style.borderColor='#e8232a'"
                         onblur="this.style.borderColor='#e2e8f0'">
                 </div>
                 <div style="margin-bottom:1rem;">
-                    <textarea name="msg" placeholder="Your Message (optional)" rows="3" style="width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8f0;
+                    <textarea name="message" placeholder="Your Message (optional)" rows="3" style="width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8f0;
                         border-radius:8px;font-size:.9rem;outline:none;resize:none;box-sizing:border-box;
                         transition:border-color .2s;" onfocus="this.style.borderColor='#e8232a'"
                         onblur="this.style.borderColor='#e2e8f0'"></textarea>
                 </div>
-                <input type="hidden" name="clientMailID" value="dr.rohit261286@gmail.com">
-                <input name="website" type="hidden" value="rjtutorialseducare.co.in/thanku.blade.php" />
-                <input name="loginID" type="hidden" value="2158" />
-                <input name="OrderID" type="hidden" value="2762" />
 
 
                 <button type="submit" style="
