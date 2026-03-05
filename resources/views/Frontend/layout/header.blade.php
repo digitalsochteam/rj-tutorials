@@ -83,11 +83,11 @@
                         </div>
                         <div class="main-menu__call-content">
                             <p class="main-menu__call-sub-title">Call Anytime</p>
-                            <h5 class="main-menu__call-number"><a href="tel:8879552477">+91 88795 52477</a></h5>
+                            <h5 class="main-menu__call-number"><a href="tel:8929765663">+91 88795 52477</a></h5>
                         </div>
                     </div>
                     <div class="main-menu__btn-box">
-                        <a href="tel:8879552477" class="thm-btn">Call Now
+                        <a href="tel:8929765663" class="thm-btn">Call Now
                             <span class="fas fa-arrow-right"></span>
                         </a>
                     </div>

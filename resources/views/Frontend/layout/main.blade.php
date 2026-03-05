@@ -31,7 +31,7 @@
                 </li>
                 <li>
                     <i class="fas fa-phone"></i>
-                    <a href="tel:8879552477">+91 8879552477</a>
+                    <a href="tel:8929765663">+91 8929765663</a>
                 </li>
             </ul><!-- /.mobile-nav__contact -->
             <div class="mobile-nav__top">
@@ -68,7 +68,7 @@
             <i class="fab fa-whatsapp"></i>
             <span class="floating-btn__label">WhatsApp</span>
         </a>
-        <a href="tel:+918879552477" class="floating-btn floating-call" aria-label="Call Us">
+        <a href="tel:+918929765663" class="floating-btn floating-call" aria-label="Call Us">
             <i class="fas fa-phone"></i>
             <span class="floating-btn__label">Call Us</span>
         </a>
@@ -216,7 +216,7 @@
                         onblur="this.style.borderColor='#e2e8f0'"></textarea>
                 </div>
                 <input type="hidden" name="clientMailID" value="dr.rohit261286@gmail.com">
-                <input name="website" type="hidden" value="/thanku.blade.php" />
+                <input name="website" type="hidden" value="rjtutorialseducare.co.in/thanku.blade.php" />
                 <input name="loginID" type="hidden" value="2158" />
                 <input name="OrderID" type="hidden" value="2762" />
 

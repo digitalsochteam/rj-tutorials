@@ -51,7 +51,7 @@
                                     <div class="icon">
                                         <span class="icon-call"></span>
                                     </div>
-                                    <p><a href="tel:8879552477">(+91) 8879552477</a></p>
+                                    <p><a href="tel:8929765663">(+91) 8929765663</a></p>
                                 </li>
                                 <li>
                                     <div class="icon">

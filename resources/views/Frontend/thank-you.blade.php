@@ -29,8 +29,8 @@
 
                     {{-- Animated checkmark --}}
                     <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#16a34a,#22c55e);
-                                    display:flex;align-items:center;justify-content:center;margin:0 auto 1.75rem;
-                                    box-shadow:0 8px 32px rgba(34,197,94,.3);">
+                                            display:flex;align-items:center;justify-content:center;margin:0 auto 1.75rem;
+                                            box-shadow:0 8px 32px rgba(34,197,94,.3);">
                         <svg width="42" height="42" fill="none" viewBox="0 0 24 24">
                             <path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round"
                                 stroke-linejoin="round" />

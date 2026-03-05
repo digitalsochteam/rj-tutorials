@@ -31,7 +31,7 @@
                             <span class="icon-call"></span>
                         </div>
                         <p>Contact Us</p>
-                        <h3><a href="tel:8879552477">+91 8879552477</a></h3>
+                        <h3><a href="tel:8929765663">+91 8929765663</a></h3>
                     </div>
                 </div>
                 <!--Contact Two Single End-->
