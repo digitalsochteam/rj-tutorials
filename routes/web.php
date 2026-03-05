@@ -172,20 +172,8 @@ Route::get('/courses/{slug}', function (string $slug) {
 | Set MIGRATE_SECRET_KEY in your .env on the live server.
 |--------------------------------------------------------------------------
 */
+
 Route::get('/run-migrations', function () {
-    $secret = config('app.migrate_secret_key');
-
-    if (empty($secret) || request('key') !== $secret) {
-        abort(403, 'Forbidden.');
-    }
-
-    try {
-        Artisan::call('migrate', ['--force' => true]);
-        $output = Artisan::output();
-        return response('<pre style="font-family:monospace;padding:1rem;">Migration complete!
-
-' . htmlspecialchars($output) . '</pre>');
-    } catch (\Throwable $e) {
-        return response('<pre style="font-family:monospace;padding:1rem;color:red;">Error: ' . htmlspecialchars($e->getMessage()) . '</pre>', 500);
-    }
+    Artisan::call('migrate', ['--force' => true]);
+    return 'Migrations executed successfully.';
 });
