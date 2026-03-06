@@ -62,7 +62,7 @@
                             </a>
                         </div>
                         <div class="banner-one__btn">
-                            <a href="tel:8929765663" class="thm-btn">Call Now
+                            <a href="tel:8929767497" class="thm-btn">Call Now
                                 <span class="fas fa-arrow-right"></span>
                             </a>
                         </div>
@@ -322,7 +322,7 @@
                         </div>
                         <div class="why-choose-one__btn-and-call-box">
                             <div class="why-choose-one__btn-box">
-                                <a href="tel:8929765663" class="thm-btn">Call Now
+                                <a href="tel:8929767497" class="thm-btn">Call Now
                                     <span class="fas fa-arrow-right"></span>
                                 </a>
                             </div>
@@ -332,7 +332,7 @@
                                 </div>
                                 <div class="why-choose-one__call-content">
                                     <p>Call Us Any Time</p>
-                                    <h5><a href="tel:8929765663">+91 8929765663</a></h5>
+                                    <h5><a href="tel:8929767497">+91 8929767497</a></h5>
                                 </div>
                             </div>
                         </div>

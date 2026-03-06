@@ -31,7 +31,7 @@
                 </li>
                 <li>
                     <i class="fas fa-phone"></i>
-                    <a href="tel:8929765663">+91 8929765663</a>
+                    <a href="tel:8929767497">+91 8929767497</a>
                 </li>
             </ul><!-- /.mobile-nav__contact -->
             <div class="mobile-nav__top">
@@ -68,7 +68,7 @@
             <i class="fab fa-whatsapp"></i>
             <span class="floating-btn__label">WhatsApp</span>
         </a>
-        <a href="tel:+918929765663" class="floating-btn floating-call" aria-label="Call Us">
+        <a href="tel:+918929767497" class="floating-btn floating-call" aria-label="Call Us">
             <i class="fas fa-phone"></i>
             <span class="floating-btn__label">Call Us</span>
         </a>
