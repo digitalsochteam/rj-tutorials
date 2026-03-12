@@ -364,6 +364,39 @@
                 </div>
             </div>
 
+            {{-- SEO --}}
+            <div class="form-card">
+                <div class="form-card-header">
+                    <div class="form-card-title">SEO / Meta Tags</div>
+                    <div class="form-card-sub">Control how the About Us page appears in search engines. Leave blank to use sensible defaults.</div>
+                </div>
+                <div class="form-body">
+                    <div class="form-grid">
+                        <div class="form-group full">
+                            <label for="about_meta_title">Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
+                            <input type="text" id="about_meta_title" name="meta_title" maxlength="80"
+                                value="{{ old('meta_title', $about->meta_title) }}"
+                                placeholder="e.g. About RJ Tutorials | Expert Coaching Since 2000"
+                                oninput="countChars(this,'about_meta_title_count',60)">
+                            <span id="about_meta_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen(old('meta_title', $about->meta_title ?? '')) }} / 60</span>
+                        </div>
+                        <div class="form-group full">
+                            <label for="about_meta_description">Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
+                            <textarea id="about_meta_description" name="meta_description" rows="3" maxlength="320"
+                                placeholder="Brief description shown in Google search results..."
+                                oninput="countChars(this,'about_meta_desc_count',160)">{{ old('meta_description', $about->meta_description) }}</textarea>
+                            <span id="about_meta_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen(old('meta_description', $about->meta_description ?? '')) }} / 160</span>
+                        </div>
+                        <div class="form-group full">
+                            <label for="about_meta_keywords">Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>
+                            <input type="text" id="about_meta_keywords" name="meta_keywords"
+                                value="{{ old('meta_keywords', $about->meta_keywords) }}"
+                                placeholder="about us, RJ tutorials, coaching institute, science coaching">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div style="display:flex;justify-content:flex-end;">
                 <button type="submit" class="btn-primary">Save Changes</button>
             </div>
@@ -551,6 +584,48 @@
             @endif
         </div>
 
+        @if(session('blog_seo_success'))
+            <div class="alert-success" style="margin-top:1.25rem;">{{ session('blog_seo_success') }}</div>
+        @endif
+
+        <form method="POST" action="{{ route('page-seo.update', 'blog') }}" style="margin-top:1.5rem;">
+            @csrf
+            <div class="form-card">
+                <div class="form-card-header">
+                    <div class="form-card-title">SEO / Meta Tags</div>
+                    <div class="form-card-sub">Control how the Blog listing page appears in search engines.</div>
+                </div>
+                <div class="form-body">
+                    <div class="form-grid">
+                        <div class="form-group full">
+                            <label>Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
+                            <input type="text" name="meta_title" maxlength="80"
+                                value="{{ old('meta_title', $pageSeo['blog']->meta_title) }}"
+                                placeholder="e.g. Blog | RJ Tutorials"
+                                oninput="countChars(this,'blog_seo_title_count',60)">
+                            <span id="blog_seo_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['blog']->meta_title ?? '') }} / 60</span>
+                        </div>
+                        <div class="form-group full">
+                            <label>Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
+                            <textarea name="meta_description" rows="3" maxlength="320"
+                                placeholder="Brief description shown in Google search results..."
+                                oninput="countChars(this,'blog_seo_desc_count',160)">{{ old('meta_description', $pageSeo['blog']->meta_description) }}</textarea>
+                            <span id="blog_seo_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['blog']->meta_description ?? '') }} / 160</span>
+                        </div>
+                        <div class="form-group full">
+                            <label>Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>
+                            <input type="text" name="meta_keywords"
+                                value="{{ old('meta_keywords', $pageSeo['blog']->meta_keywords) }}"
+                                placeholder="blog, articles, RJ tutorials, education tips">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-bottom:1.5rem;">
+                <button type="submit" class="btn-primary">Save SEO</button>
+            </div>
+        </form>
+
     </div>{{-- /panel-blog --}}
 
     {{-- ══ PANEL: COURSES ══ --}}
@@ -644,6 +719,48 @@
                 </table>
             </div>
         @endif
+
+        @if(session('courses_seo_success'))
+            <div class="alert-success" style="margin-top:1.25rem;">{{ session('courses_seo_success') }}</div>
+        @endif
+
+        <form method="POST" action="{{ route('page-seo.update', 'courses') }}" style="margin-top:1.5rem;">
+            @csrf
+            <div class="form-card">
+                <div class="form-card-header">
+                    <div class="form-card-title">SEO / Meta Tags</div>
+                    <div class="form-card-sub">Control how the Courses listing page appears in search engines.</div>
+                </div>
+                <div class="form-body">
+                    <div class="form-grid">
+                        <div class="form-group full">
+                            <label>Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
+                            <input type="text" name="meta_title" maxlength="80"
+                                value="{{ old('meta_title', $pageSeo['courses']->meta_title) }}"
+                                placeholder="e.g. Our Courses | RJ Tutorials"
+                                oninput="countChars(this,'courses_seo_title_count',60)">
+                            <span id="courses_seo_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['courses']->meta_title ?? '') }} / 60</span>
+                        </div>
+                        <div class="form-group full">
+                            <label>Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
+                            <textarea name="meta_description" rows="3" maxlength="320"
+                                placeholder="Brief description shown in Google search results..."
+                                oninput="countChars(this,'courses_seo_desc_count',160)">{{ old('meta_description', $pageSeo['courses']->meta_description) }}</textarea>
+                            <span id="courses_seo_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['courses']->meta_description ?? '') }} / 160</span>
+                        </div>
+                        <div class="form-group full">
+                            <label>Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>
+                            <input type="text" name="meta_keywords"
+                                value="{{ old('meta_keywords', $pageSeo['courses']->meta_keywords) }}"
+                                placeholder="courses, RJ tutorials, science coaching, JEE NEET">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-bottom:1.5rem;">
+                <button type="submit" class="btn-primary">Save SEO</button>
+            </div>
+        </form>
 
     </div>{{-- /panel-courses --}}
 
@@ -753,6 +870,48 @@
                 </table>
             </div>
         @endif
+        @if(session('gallery_seo_success'))
+            <div class="alert-success" style="margin-top:1.25rem;">{{ session('gallery_seo_success') }}</div>
+        @endif
+
+        <form method="POST" action="{{ route('page-seo.update', 'gallery') }}" style="margin-top:1.5rem;">
+            @csrf
+            <div class="form-card">
+                <div class="form-card-header">
+                    <div class="form-card-title">SEO / Meta Tags</div>
+                    <div class="form-card-sub">Control how the Gallery page appears in search engines.</div>
+                </div>
+                <div class="form-body">
+                    <div class="form-grid">
+                        <div class="form-group full">
+                            <label>Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
+                            <input type="text" name="meta_title" maxlength="80"
+                                value="{{ old('meta_title', $pageSeo['gallery']->meta_title) }}"
+                                placeholder="e.g. Gallery | RJ Tutorials"
+                                oninput="countChars(this,'gallery_seo_title_count',60)">
+                            <span id="gallery_seo_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['gallery']->meta_title ?? '') }} / 60</span>
+                        </div>
+                        <div class="form-group full">
+                            <label>Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
+                            <textarea name="meta_description" rows="3" maxlength="320"
+                                placeholder="Brief description shown in Google search results..."
+                                oninput="countChars(this,'gallery_seo_desc_count',160)">{{ old('meta_description', $pageSeo['gallery']->meta_description) }}</textarea>
+                            <span id="gallery_seo_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['gallery']->meta_description ?? '') }} / 160</span>
+                        </div>
+                        <div class="form-group full">
+                            <label>Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>
+                            <input type="text" name="meta_keywords"
+                                value="{{ old('meta_keywords', $pageSeo['gallery']->meta_keywords) }}"
+                                placeholder="gallery, RJ tutorials, photos, events">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-bottom:1.5rem;">
+                <button type="submit" class="btn-primary">Save SEO</button>
+            </div>
+        </form>
+
     </div>{{-- /panel-gallery --}}
 
     {{-- ══ PANEL: ENQUIRIES ══ --}}
@@ -944,6 +1103,48 @@
 
             <div style="display:flex;justify-content:flex-end;">
                 <button type="submit" class="btn-primary">Save SEO Settings</button>
+            </div>
+        </form>
+
+        @if(session('contact_seo_success'))
+            <div class="alert-success" style="margin-top:1.25rem;">{{ session('contact_seo_success') }}</div>
+        @endif
+
+        <form method="POST" action="{{ route('page-seo.update', 'contact') }}" style="margin-top:1.5rem;">
+            @csrf
+            <div class="form-card">
+                <div class="form-card-header">
+                    <div class="form-card-title">Contact Us Page — SEO / Meta Tags</div>
+                    <div class="form-card-sub">Control how the Contact Us page appears in search engines.</div>
+                </div>
+                <div class="form-body">
+                    <div class="form-grid">
+                        <div class="form-group full">
+                            <label>Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
+                            <input type="text" name="meta_title" maxlength="80"
+                                value="{{ old('meta_title', $pageSeo['contact']->meta_title) }}"
+                                placeholder="e.g. Contact Us | RJ Tutorials"
+                                oninput="countChars(this,'contact_seo_title_count',60)">
+                            <span id="contact_seo_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['contact']->meta_title ?? '') }} / 60</span>
+                        </div>
+                        <div class="form-group full">
+                            <label>Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
+                            <textarea name="meta_description" rows="3" maxlength="320"
+                                placeholder="Brief description shown in Google search results..."
+                                oninput="countChars(this,'contact_seo_desc_count',160)">{{ old('meta_description', $pageSeo['contact']->meta_description) }}</textarea>
+                            <span id="contact_seo_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['contact']->meta_description ?? '') }} / 160</span>
+                        </div>
+                        <div class="form-group full">
+                            <label>Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>
+                            <input type="text" name="meta_keywords"
+                                value="{{ old('meta_keywords', $pageSeo['contact']->meta_keywords) }}"
+                                placeholder="contact us, RJ tutorials, Chembur coaching, enquiry">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-bottom:1.5rem;">
+                <button type="submit" class="btn-primary">Save SEO</button>
             </div>
         </form>
 
@@ -1165,6 +1366,48 @@
             </div>
             <div style="display:flex;justify-content:flex-end;margin-bottom:1.5rem;">
                 <button type="submit" class="btn-primary">Save Notes</button>
+            </div>
+        </form>
+
+        @if(session('fees_seo_success'))
+            <div class="alert-success" style="margin-top:1.25rem;">{{ session('fees_seo_success') }}</div>
+        @endif
+
+        <form method="POST" action="{{ route('page-seo.update', 'fees') }}" style="margin-top:1.5rem;">
+            @csrf
+            <div class="form-card">
+                <div class="form-card-header">
+                    <div class="form-card-title">SEO / Meta Tags</div>
+                    <div class="form-card-sub">Control how the Fees page appears in search engines.</div>
+                </div>
+                <div class="form-body">
+                    <div class="form-grid">
+                        <div class="form-group full">
+                            <label>Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
+                            <input type="text" name="meta_title" maxlength="80"
+                                value="{{ old('meta_title', $pageSeo['fees']->meta_title) }}"
+                                placeholder="e.g. Fees Structure | RJ Tutorials"
+                                oninput="countChars(this,'fees_seo_title_count',60)">
+                            <span id="fees_seo_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['fees']->meta_title ?? '') }} / 60</span>
+                        </div>
+                        <div class="form-group full">
+                            <label>Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
+                            <textarea name="meta_description" rows="3" maxlength="320"
+                                placeholder="Brief description shown in Google search results..."
+                                oninput="countChars(this,'fees_seo_desc_count',160)">{{ old('meta_description', $pageSeo['fees']->meta_description) }}</textarea>
+                            <span id="fees_seo_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['fees']->meta_description ?? '') }} / 160</span>
+                        </div>
+                        <div class="form-group full">
+                            <label>Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>
+                            <input type="text" name="meta_keywords"
+                                value="{{ old('meta_keywords', $pageSeo['fees']->meta_keywords) }}"
+                                placeholder="fees, tuition fees, RJ tutorials, course pricing">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-bottom:1.5rem;">
+                <button type="submit" class="btn-primary">Save SEO</button>
             </div>
         </form>
 

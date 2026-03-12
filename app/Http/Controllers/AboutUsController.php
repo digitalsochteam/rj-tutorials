@@ -25,6 +25,9 @@ class AboutUsController extends Controller
             'secondary_image'  => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'years_experience' => ['required', 'integer', 'min:0'],
             'students_count'   => ['required', 'integer', 'min:0'],
+            'meta_title'       => ['nullable', 'string', 'max:255'],
+            'meta_description' => ['nullable', 'string', 'max:320'],
+            'meta_keywords'    => ['nullable', 'string', 'max:500'],
         ]);
 
         $about = AboutUs::instance();

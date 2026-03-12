@@ -1,4 +1,18 @@
 ﻿@extends('Frontend.layout.main')
+
+@section('title', ($seo->meta_title ?: 'Fees Structure') . ' | RJ TUTORIALS')
+
+@push('meta')
+    <meta name="description" content="{{ $seo->meta_description ?: 'View the transparent fees structure for all courses at RJ Tutorials — affordable coaching for JEE, NEET, MHCET & board exams.' }}">
+    @if($seo->meta_keywords)
+    <meta name="keywords" content="{{ $seo->meta_keywords }}">
+    @endif
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $seo->meta_title ?: 'Fees Structure | RJ TUTORIALS' }}">
+    <meta property="og:description" content="{{ $seo->meta_description ?: 'View the transparent fees structure for all courses at RJ Tutorials — affordable coaching for JEE, NEET, MHCET & board exams.' }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+@endpush
+
 @section('content')
 
     {{-- Page Header --}}

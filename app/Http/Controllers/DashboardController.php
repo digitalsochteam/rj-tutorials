@@ -8,11 +8,11 @@ use App\Models\Course;
 use App\Models\Enquiry;
 use App\Models\GalleryImage;
 use App\Models\HomeSeo;
+use App\Models\PageSeo;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
 use App\Models\FeesContent;
 use App\Models\FeeStructure;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -38,6 +38,13 @@ class DashboardController extends Controller
             'testimonials'    => Testimonial::orderBy('sort_order')->get(),
             'feeStructures'   => FeeStructure::orderBy('sort_order')->get(),
             'feesContent'     => FeesContent::instance(),
+            'pageSeo'         => [
+                'courses' => PageSeo::for('courses'),
+                'gallery' => PageSeo::for('gallery'),
+                'blog'    => PageSeo::for('blog'),
+                'fees'    => PageSeo::for('fees'),
+                'contact' => PageSeo::for('contact'),
+            ],
             'activePanel'     => $activePanel,
         ]);
     }

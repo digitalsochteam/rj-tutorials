@@ -15,11 +15,13 @@ use App\Http\Controllers\HomeSeoController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\FeeStructureController;
 use App\Http\Controllers\FeesContentController;
+use App\Http\Controllers\PageSeoController;
 use App\Models\AboutUs;
 use App\Models\BlogPost;
 use App\Models\Course;
 use App\Models\GalleryImage;
 use App\Models\HomeSeo;
+use App\Models\PageSeo;
 use App\Models\Testimonial;
 use App\Models\FeesContent;
 use App\Models\FeeStructure;
@@ -46,22 +48,26 @@ Route::get('/team', function () {
 })->name('team');
 
 Route::get('/gallery', function () {
-    $images = GalleryImage::active()->get();
-    return view('Frontend.gallery', compact('images'));
+    $images  = GalleryImage::active()->get();
+    $seo     = PageSeo::for('gallery');
+    return view('Frontend.gallery', compact('images', 'seo'));
 })->name('gallery');
 
 Route::get('/blog', function () {
     $posts = BlogPost::published()->paginate(9);
-    return view('Frontend.blog', compact('posts'));
+    $seo   = PageSeo::for('blog');
+    return view('Frontend.blog', compact('posts', 'seo'));
 })->name('blog');
 
 Route::get('/courses', function () {
     $courses = Course::where('is_active', true)->orderBy('sort_order')->get();
-    return view('Frontend.courses', compact('courses'));
+    $seo     = PageSeo::for('courses');
+    return view('Frontend.courses', compact('courses', 'seo'));
 })->name('courses');
 
 Route::get('/contact', function () {
-    return view('Frontend.contact');
+    $seo = PageSeo::for('contact');
+    return view('Frontend.contact', compact('seo'));
 })->name('contact');
 
 Route::post('/contact', [EnquiryController::class, 'store'])->name('enquiry.store');
@@ -126,6 +132,9 @@ Route::middleware('auth')->group(function () {
     // Fees page intro content
     Route::post('/fees-content', [FeesContentController::class, 'update'])->name('fees-content.update');
 
+    // Page SEO (courses, gallery, blog, fees, contact)
+    Route::post('/page-seo/{page}', [PageSeoController::class, 'update'])->name('page-seo.update');
+
     // Fee Structure CRUD
     Route::get('/fees/create', [FeeStructureController::class, 'create'])->name('fees.create');
     Route::post('/fees', [FeeStructureController::class, 'store'])->name('fees.store');
@@ -138,7 +147,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/fees', function () {
     $feesContent = FeesContent::instance();
     $feeGroups   = FeeStructure::active()->orderBy('sort_order')->get()->groupBy('course_name');
-    return view('Frontend.fees', compact('feesContent', 'feeGroups'));
+    $seo         = PageSeo::for('fees');
+    return view('Frontend.fees', compact('feesContent', 'feeGroups', 'seo'));
 })->name('fees');
 
 // Public blog detail — declared AFTER auth group so /blog/create resolves to the auth route above

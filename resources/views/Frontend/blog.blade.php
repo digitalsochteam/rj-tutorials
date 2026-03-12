@@ -1,4 +1,18 @@
 @extends('Frontend.layout.main')
+
+@section('title', ($seo->meta_title ?: 'Blog') . ' | RJ TUTORIALS')
+
+@push('meta')
+    <meta name="description" content="{{ $seo->meta_description ?: 'Read the latest articles, tips and updates from RJ Tutorials — education insights, exam preparation guides and more.' }}">
+    @if($seo->meta_keywords)
+    <meta name="keywords" content="{{ $seo->meta_keywords }}">
+    @endif
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $seo->meta_title ?: 'Blog | RJ TUTORIALS' }}">
+    <meta property="og:description" content="{{ $seo->meta_description ?: 'Read the latest articles, tips and updates from RJ Tutorials — education insights, exam preparation guides and more.' }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+@endpush
+
 @section('content')
 
     <!--Page Header Start-->

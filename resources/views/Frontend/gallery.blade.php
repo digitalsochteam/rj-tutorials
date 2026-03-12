@@ -1,7 +1,16 @@
 @extends('Frontend.layout.main')
-@section('title', 'Gallery | RJ TUTORIALS')
+
+@section('title', ($seo->meta_title ?: 'Gallery') . ' | RJ TUTORIALS')
+
 @push('meta')
-    <meta name="description" content="Browse photos from RJ Tutorials — classrooms, events, achievements and campus life.">
+    <meta name="description" content="{{ $seo->meta_description ?: 'Browse photos and videos from RJ Tutorials — classrooms, events, achievements and campus life.' }}">
+    @if($seo->meta_keywords)
+    <meta name="keywords" content="{{ $seo->meta_keywords }}">
+    @endif
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $seo->meta_title ?: 'Gallery | RJ TUTORIALS' }}">
+    <meta property="og:description" content="{{ $seo->meta_description ?: 'Browse photos and videos from RJ Tutorials — classrooms, events, achievements and campus life.' }}">
+    <meta property="og:url" content="{{ url()->current() }}">
 @endpush
 
 @section('content')

@@ -1,4 +1,18 @@
 @extends('Frontend.layout.main')
+
+@section('title', ($about->meta_title ?: 'About Us') . ' | RJ TUTORIALS')
+
+@push('meta')
+    <meta name="description" content="{{ $about->meta_description ?: 'Learn about RJ Tutorials — expert coaching institute for grades VIII–XII, JEE, NEET & MHCET preparation.' }}">
+    @if($about->meta_keywords)
+    <meta name="keywords" content="{{ $about->meta_keywords }}">
+    @endif
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $about->meta_title ?: 'About Us | RJ TUTORIALS' }}">
+    <meta property="og:description" content="{{ $about->meta_description ?: 'Learn about RJ Tutorials — expert coaching institute for grades VIII–XII, JEE, NEET & MHCET preparation.' }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+@endpush
+
 @section('content')
     <!--Page Header Start-->
     <section class="page-header">

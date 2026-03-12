@@ -18,6 +18,9 @@ class AboutUs extends Model
         'secondary_image',
         'years_experience',
         'students_count',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
     ];
 
     /**
