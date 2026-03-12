@@ -9,7 +9,7 @@
                 <h3>Founder / Director</h3>
                 <div class="thm-breadcrumb__inner">
                     <ul class="thm-breadcrumb list-unstyled">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
                         <li><span class="icon-arrow-angle-pointing-to-right"></span></li>
                         <li>Founder / Director</li>
                     </ul>

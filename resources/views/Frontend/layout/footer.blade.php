@@ -11,7 +11,7 @@
                     <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
                         <div class="footer-widget__about">
                             <div class="footer-widget__about-logo">
-                                <a href="index.html"><img src="assets/images/resources/logo-2.png" alt=""></a>
+                                <a href="{{ url('/') }}"><img src="assets/images/resources/logo-2.png" alt=""></a>
                             </div>
                             <p class="footer-widget__about-text">At RJ Tutorials, Education is not just a journey to
                                 academic excellence but a transformative experience that shapes both mind and character

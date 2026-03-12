@@ -25,7 +25,7 @@
                 <h3>About Us</h3>
                 <div class="thm-breadcrumb__inner">
                     <ul class="thm-breadcrumb list-unstyled">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
                         <li><span class="icon-arrow-angle-pointing-to-right"></span></li>
                         <li>About Us</li>
                     </ul>
