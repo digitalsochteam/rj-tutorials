@@ -11,9 +11,9 @@ return new class extends Migration
         Schema::create('page_seo', function (Blueprint $table) {
             $table->id();
             $table->string('page')->unique(); // courses, gallery, blog, fees, contact
-            $table->string('meta_title')->nullable();
-            $table->string('meta_description', 320)->nullable();
-            $table->string('meta_keywords', 500)->nullable();
+            $table->text('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->text('meta_keywords')->nullable();
             $table->timestamps();
         });
     }

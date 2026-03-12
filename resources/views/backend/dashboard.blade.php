@@ -373,19 +373,15 @@
                 <div class="form-body">
                     <div class="form-grid">
                         <div class="form-group full">
-                            <label for="about_meta_title">Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
-                            <input type="text" id="about_meta_title" name="meta_title" maxlength="80"
+                            <label for="about_meta_title">Meta Title</label>
+                            <input type="text" id="about_meta_title" name="meta_title"
                                 value="{{ old('meta_title', $about->meta_title) }}"
-                                placeholder="e.g. About RJ Tutorials | Expert Coaching Since 2000"
-                                oninput="countChars(this,'about_meta_title_count',60)">
-                            <span id="about_meta_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen(old('meta_title', $about->meta_title ?? '')) }} / 60</span>
+                                placeholder="e.g. About RJ Tutorials | Expert Coaching Since 2000">
                         </div>
                         <div class="form-group full">
-                            <label for="about_meta_description">Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
-                            <textarea id="about_meta_description" name="meta_description" rows="3" maxlength="320"
-                                placeholder="Brief description shown in Google search results..."
-                                oninput="countChars(this,'about_meta_desc_count',160)">{{ old('meta_description', $about->meta_description) }}</textarea>
-                            <span id="about_meta_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen(old('meta_description', $about->meta_description ?? '')) }} / 160</span>
+                            <label for="about_meta_description">Meta Description</label>
+                            <textarea id="about_meta_description" name="meta_description" rows="3"
+                                placeholder="Brief description shown in Google search results...">{{ old('meta_description', $about->meta_description) }}</textarea>
                         </div>
                         <div class="form-group full">
                             <label for="about_meta_keywords">Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>
@@ -598,19 +594,15 @@
                 <div class="form-body">
                     <div class="form-grid">
                         <div class="form-group full">
-                            <label>Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
-                            <input type="text" name="meta_title" maxlength="80"
+                            <label>Meta Title</label>
+                            <input type="text" name="meta_title"
                                 value="{{ old('meta_title', $pageSeo['blog']->meta_title) }}"
-                                placeholder="e.g. Blog | RJ Tutorials"
-                                oninput="countChars(this,'blog_seo_title_count',60)">
-                            <span id="blog_seo_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['blog']->meta_title ?? '') }} / 60</span>
+                                placeholder="e.g. Blog | RJ Tutorials">
                         </div>
                         <div class="form-group full">
-                            <label>Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
-                            <textarea name="meta_description" rows="3" maxlength="320"
-                                placeholder="Brief description shown in Google search results..."
-                                oninput="countChars(this,'blog_seo_desc_count',160)">{{ old('meta_description', $pageSeo['blog']->meta_description) }}</textarea>
-                            <span id="blog_seo_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['blog']->meta_description ?? '') }} / 160</span>
+                            <label>Meta Description</label>
+                            <textarea name="meta_description" rows="3"
+                                placeholder="Brief description shown in Google search results...">{{ old('meta_description', $pageSeo['blog']->meta_description) }}</textarea>
                         </div>
                         <div class="form-group full">
                             <label>Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>
@@ -734,19 +726,15 @@
                 <div class="form-body">
                     <div class="form-grid">
                         <div class="form-group full">
-                            <label>Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
-                            <input type="text" name="meta_title" maxlength="80"
+                            <label>Meta Title</label>
+                            <input type="text" name="meta_title"
                                 value="{{ old('meta_title', $pageSeo['courses']->meta_title) }}"
-                                placeholder="e.g. Our Courses | RJ Tutorials"
-                                oninput="countChars(this,'courses_seo_title_count',60)">
-                            <span id="courses_seo_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['courses']->meta_title ?? '') }} / 60</span>
+                                placeholder="e.g. Our Courses | RJ Tutorials">
                         </div>
                         <div class="form-group full">
-                            <label>Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
-                            <textarea name="meta_description" rows="3" maxlength="320"
-                                placeholder="Brief description shown in Google search results..."
-                                oninput="countChars(this,'courses_seo_desc_count',160)">{{ old('meta_description', $pageSeo['courses']->meta_description) }}</textarea>
-                            <span id="courses_seo_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['courses']->meta_description ?? '') }} / 160</span>
+                            <label>Meta Description</label>
+                            <textarea name="meta_description" rows="3"
+                                placeholder="Brief description shown in Google search results...">{{ old('meta_description', $pageSeo['courses']->meta_description) }}</textarea>
                         </div>
                         <div class="form-group full">
                             <label>Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>
@@ -884,19 +872,15 @@
                 <div class="form-body">
                     <div class="form-grid">
                         <div class="form-group full">
-                            <label>Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
-                            <input type="text" name="meta_title" maxlength="80"
+                            <label>Meta Title</label>
+                            <input type="text" name="meta_title"
                                 value="{{ old('meta_title', $pageSeo['gallery']->meta_title) }}"
-                                placeholder="e.g. Gallery | RJ Tutorials"
-                                oninput="countChars(this,'gallery_seo_title_count',60)">
-                            <span id="gallery_seo_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['gallery']->meta_title ?? '') }} / 60</span>
+                                placeholder="e.g. Gallery | RJ Tutorials">
                         </div>
                         <div class="form-group full">
-                            <label>Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
-                            <textarea name="meta_description" rows="3" maxlength="320"
-                                placeholder="Brief description shown in Google search results..."
-                                oninput="countChars(this,'gallery_seo_desc_count',160)">{{ old('meta_description', $pageSeo['gallery']->meta_description) }}</textarea>
-                            <span id="gallery_seo_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['gallery']->meta_description ?? '') }} / 160</span>
+                            <label>Meta Description</label>
+                            <textarea name="meta_description" rows="3"
+                                placeholder="Brief description shown in Google search results...">{{ old('meta_description', $pageSeo['gallery']->meta_description) }}</textarea>
                         </div>
                         <div class="form-group full">
                             <label>Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>
@@ -1045,8 +1029,7 @@
             <div class="form-card">
                 <div class="form-card-header">
                     <div class="form-card-title">Meta Tags</div>
-                    <div class="form-card-sub">Shown in Google search results. Keep title &le;60 chars, description &le;160
-                        chars.</div>
+                    <div class="form-card-sub">Shown in Google search results.</div>
                 </div>
                 <div class="form-body">
                     <div class="form-grid">
@@ -1054,20 +1037,12 @@
                             <label for="seo_title">Meta Title</label>
                             <input type="text" id="seo_title" name="seo_title"
                                 value="{{ old('seo_title', $homeSeo->seo_title) }}"
-                                placeholder="RJ TUTORIALS – Expert Coaching for JEE, NEET & MHCET"
-                                oninput="countChars(this,'seo_title_count',60)">
-                            <span id="seo_title_count" style="font-size:.75rem;color:#94a3b8;">
-                                {{ strlen(old('seo_title', $homeSeo->seo_title ?? '')) }} / 60
-                            </span>
+                                placeholder="RJ TUTORIALS – Expert Coaching for JEE, NEET & MHCET">
                         </div>
                         <div class="form-group full">
                             <label for="seo_description">Meta Description</label>
                             <textarea id="seo_description" name="seo_description" rows="3"
-                                placeholder="Brief description of your page for search engines (max 160 chars)"
-                                oninput="countChars(this,'seo_desc_count',160)">{{ old('seo_description', $homeSeo->seo_description) }}</textarea>
-                            <span id="seo_desc_count" style="font-size:.75rem;color:#94a3b8;">
-                                {{ strlen(old('seo_description', $homeSeo->seo_description ?? '')) }} / 160
-                            </span>
+                                placeholder="Brief description of your page for search engines">{{ old('seo_description', $homeSeo->seo_description) }}</textarea>
                         </div>
                         <div class="form-group full">
                             <label for="seo_keywords">Keywords <small
@@ -1120,19 +1095,15 @@
                 <div class="form-body">
                     <div class="form-grid">
                         <div class="form-group full">
-                            <label>Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
-                            <input type="text" name="meta_title" maxlength="80"
+                            <label>Meta Title</label>
+                            <input type="text" name="meta_title"
                                 value="{{ old('meta_title', $pageSeo['contact']->meta_title) }}"
-                                placeholder="e.g. Contact Us | RJ Tutorials"
-                                oninput="countChars(this,'contact_seo_title_count',60)">
-                            <span id="contact_seo_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['contact']->meta_title ?? '') }} / 60</span>
+                                placeholder="e.g. Contact Us | RJ Tutorials">
                         </div>
                         <div class="form-group full">
-                            <label>Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
-                            <textarea name="meta_description" rows="3" maxlength="320"
-                                placeholder="Brief description shown in Google search results..."
-                                oninput="countChars(this,'contact_seo_desc_count',160)">{{ old('meta_description', $pageSeo['contact']->meta_description) }}</textarea>
-                            <span id="contact_seo_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['contact']->meta_description ?? '') }} / 160</span>
+                            <label>Meta Description</label>
+                            <textarea name="meta_description" rows="3"
+                                placeholder="Brief description shown in Google search results...">{{ old('meta_description', $pageSeo['contact']->meta_description) }}</textarea>
                         </div>
                         <div class="form-group full">
                             <label>Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>
@@ -1383,19 +1354,15 @@
                 <div class="form-body">
                     <div class="form-grid">
                         <div class="form-group full">
-                            <label>Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
-                            <input type="text" name="meta_title" maxlength="80"
+                            <label>Meta Title</label>
+                            <input type="text" name="meta_title"
                                 value="{{ old('meta_title', $pageSeo['fees']->meta_title) }}"
-                                placeholder="e.g. Fees Structure | RJ Tutorials"
-                                oninput="countChars(this,'fees_seo_title_count',60)">
-                            <span id="fees_seo_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['fees']->meta_title ?? '') }} / 60</span>
+                                placeholder="e.g. Fees Structure | RJ Tutorials">
                         </div>
                         <div class="form-group full">
-                            <label>Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
-                            <textarea name="meta_description" rows="3" maxlength="320"
-                                placeholder="Brief description shown in Google search results..."
-                                oninput="countChars(this,'fees_seo_desc_count',160)">{{ old('meta_description', $pageSeo['fees']->meta_description) }}</textarea>
-                            <span id="fees_seo_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen($pageSeo['fees']->meta_description ?? '') }} / 160</span>
+                            <label>Meta Description</label>
+                            <textarea name="meta_description" rows="3"
+                                placeholder="Brief description shown in Google search results...">{{ old('meta_description', $pageSeo['fees']->meta_description) }}</textarea>
                         </div>
                         <div class="form-group full">
                             <label>Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>

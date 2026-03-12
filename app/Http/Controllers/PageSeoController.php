@@ -15,9 +15,9 @@ class PageSeoController extends Controller
         }
 
         $request->validate([
-            'meta_title'       => ['nullable', 'string', 'max:255'],
-            'meta_description' => ['nullable', 'string', 'max:320'],
-            'meta_keywords'    => ['nullable', 'string', 'max:500'],
+            'meta_title'       => ['nullable', 'string'],
+            'meta_description' => ['nullable', 'string'],
+            'meta_keywords'    => ['nullable', 'string'],
         ]);
 
         PageSeo::for($page)->update($request->only('meta_title', 'meta_description', 'meta_keywords'));

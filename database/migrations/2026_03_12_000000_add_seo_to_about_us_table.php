@@ -9,9 +9,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('about_us', function (Blueprint $table) {
-            $table->string('meta_title')->nullable()->after('students_count');
-            $table->string('meta_description', 320)->nullable()->after('meta_title');
-            $table->string('meta_keywords', 500)->nullable()->after('meta_description');
+            $table->text('meta_title')->nullable()->after('students_count');
+            $table->text('meta_description')->nullable()->after('meta_title');
+            $table->text('meta_keywords')->nullable()->after('meta_description');
         });
     }
 

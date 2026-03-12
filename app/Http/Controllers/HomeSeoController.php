@@ -11,9 +11,9 @@ class HomeSeoController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'seo_title'       => ['nullable', 'string', 'max:255'],
-            'seo_description' => ['nullable', 'string', 'max:320'],
-            'seo_keywords'    => ['nullable', 'string', 'max:500'],
+            'seo_title'       => ['nullable', 'string'],
+            'seo_description' => ['nullable', 'string'],
+            'seo_keywords'    => ['nullable', 'string'],
             'og_image'        => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ]);
 

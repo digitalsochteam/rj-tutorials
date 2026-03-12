@@ -138,19 +138,15 @@
             <div class="form-body">
                 <div class="form-grid">
                     <div class="form-group full">
-                        <label for="meta_title">Meta Title <small style="color:#94a3b8;">(50–60 chars ideal)</small></label>
-                        <input type="text" id="meta_title" name="meta_title" maxlength="80"
+                        <label for="meta_title">Meta Title</label>
+                        <input type="text" id="meta_title" name="meta_title"
                             value="{{ old('meta_title', $about->meta_title) }}"
-                            placeholder="e.g. About RJ Tutorials | Expert Coaching Since 2000"
-                            oninput="countChars(this,'meta_title_count',60)">
-                        <span id="meta_title_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen(old('meta_title', $about->meta_title ?? '')) }} / 60</span>
+                            placeholder="e.g. About RJ Tutorials | Expert Coaching Since 2000">
                     </div>
                     <div class="form-group full">
-                        <label for="meta_description">Meta Description <small style="color:#94a3b8;">(150–160 chars ideal)</small></label>
-                        <textarea id="meta_description" name="meta_description" rows="3" maxlength="320"
-                            placeholder="Brief description shown in Google search results..."
-                            oninput="countChars(this,'meta_desc_count',160)">{{ old('meta_description', $about->meta_description) }}</textarea>
-                        <span id="meta_desc_count" style="font-size:.75rem;color:#94a3b8;">{{ strlen(old('meta_description', $about->meta_description ?? '')) }} / 160</span>
+                        <label for="meta_description">Meta Description</label>
+                        <textarea id="meta_description" name="meta_description" rows="3"
+                            placeholder="Brief description shown in Google search results...">{{ old('meta_description', $about->meta_description) }}</textarea>
                     </div>
                     <div class="form-group full">
                         <label for="meta_keywords">Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>

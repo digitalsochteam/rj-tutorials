@@ -118,20 +118,14 @@
                         </div>
                     </div>
                     <div class="form-group full">
-                        <label>Meta Title <small style="color:#94a3b8;">(leave blank to use course title &mdash; 50-60
-                                chars)</small></label>
+                        <label>Meta Title <small style="color:#94a3b8;">(leave blank to use course title)</small></label>
                         <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}"
-                            placeholder="e.g. Science Preparation Course | RJ Tutorials" maxlength="80"
-                            oninput="countChars(this,'meta_title_count',60)">
-                        <span id="meta_title_count" style="font-size:.75rem;color:#94a3b8;">0 / 60</span>
+                            placeholder="e.g. Science Preparation Course | RJ Tutorials">
                     </div>
                     <div class="form-group full">
-                        <label>Meta Description <small style="color:#94a3b8;">(leave blank to use short description &mdash;
-                                150-160 chars)</small></label>
-                        <textarea name="meta_description" rows="3" maxlength="165"
-                            placeholder="Brief description shown in Google search results..."
-                            oninput="countChars(this,'meta_desc_count',160)">{{ old('meta_description') }}</textarea>
-                        <span id="meta_desc_count" style="font-size:.75rem;color:#94a3b8;">0 / 160</span>
+                        <label>Meta Description <small style="color:#94a3b8;">(leave blank to use short description)</small></label>
+                        <textarea name="meta_description" rows="3"
+                            placeholder="Brief description shown in Google search results...">{{ old('meta_description') }}</textarea>
                     </div>
                     <div class="form-group full">
                         <label>Meta Keywords <small style="color:#94a3b8;">(comma-separated)</small></label>
