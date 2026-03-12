@@ -1,5 +1,5 @@
 @extends('Frontend.layout.main')
-@section('title', ($course->meta_title ?: $course->title) . ' | RJ TUTORIALS')
+@section('title', $course->meta_title ?: $course->title)
 @push('meta')
     {{-- Primary SEO --}}
     <meta name="description" content="{{ $course->meta_description ?: Str::limit(strip_tags($course->short_description ?: $course->description), 160) }}">

@@ -1,15 +1,17 @@
 @extends('Frontend.layout.main')
 
-@section('title', ($seo->meta_title ?: 'Our Courses') . ' | RJ TUTORIALS')
+@section('title', $seo->meta_title ?: 'Our Courses')
 
 @push('meta')
-    <meta name="description" content="{{ $seo->meta_description ?: 'Explore all courses offered by RJ Tutorials — expert coaching for grades VIII–XII, JEE, NEET & MHCET preparation.' }}">
+    <meta name="description"
+        content="{{ $seo->meta_description ?: 'Explore all courses offered by RJ Tutorials — expert coaching for grades VIII–XII, JEE, NEET & MHCET preparation.' }}">
     @if($seo->meta_keywords)
-    <meta name="keywords" content="{{ $seo->meta_keywords }}">
+        <meta name="keywords" content="{{ $seo->meta_keywords }}">
     @endif
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ $seo->meta_title ?: 'Our Courses | RJ TUTORIALS' }}">
-    <meta property="og:description" content="{{ $seo->meta_description ?: 'Explore all courses offered by RJ Tutorials — expert coaching for grades VIII–XII, JEE, NEET & MHCET preparation.' }}">
+    <meta property="og:description"
+        content="{{ $seo->meta_description ?: 'Explore all courses offered by RJ Tutorials — expert coaching for grades VIII–XII, JEE, NEET & MHCET preparation.' }}">
     <meta property="og:url" content="{{ url()->current() }}">
 @endpush
 

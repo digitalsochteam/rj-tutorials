@@ -1,15 +1,17 @@
 ﻿@extends('Frontend.layout.main')
 
-@section('title', ($seo->meta_title ?: 'Fees Structure') . ' | RJ TUTORIALS')
+@section('title', $seo->meta_title ?: 'Fees Structure')
 
 @push('meta')
-    <meta name="description" content="{{ $seo->meta_description ?: 'View the transparent fees structure for all courses at RJ Tutorials — affordable coaching for JEE, NEET, MHCET & board exams.' }}">
+    <meta name="description"
+        content="{{ $seo->meta_description ?: 'View the transparent fees structure for all courses at RJ Tutorials — affordable coaching for JEE, NEET, MHCET & board exams.' }}">
     @if($seo->meta_keywords)
-    <meta name="keywords" content="{{ $seo->meta_keywords }}">
+        <meta name="keywords" content="{{ $seo->meta_keywords }}">
     @endif
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ $seo->meta_title ?: 'Fees Structure | RJ TUTORIALS' }}">
-    <meta property="og:description" content="{{ $seo->meta_description ?: 'View the transparent fees structure for all courses at RJ Tutorials — affordable coaching for JEE, NEET, MHCET & board exams.' }}">
+    <meta property="og:description"
+        content="{{ $seo->meta_description ?: 'View the transparent fees structure for all courses at RJ Tutorials — affordable coaching for JEE, NEET, MHCET & board exams.' }}">
     <meta property="og:url" content="{{ url()->current() }}">
 @endpush
 
@@ -50,7 +52,7 @@
             @if($feesContent->intro_content)
                 <div
                     style="background:#fff;border-radius:12px;padding:24px 28px;margin-bottom:40px;
-                                                                                                                    box-shadow:0 2px 12px rgba(0,0,0,.06);color:#475569;line-height:1.8;font-size:.97rem;">
+                                                                                                                                    box-shadow:0 2px 12px rgba(0,0,0,.06);color:#475569;line-height:1.8;font-size:.97rem;">
                     {!! $feesContent->intro_content !!}
                 </div>
             @endif
@@ -72,7 +74,7 @@
                     {{-- Responsive table --}}
                     <div
                         style="overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;
-                                                                                                                        box-shadow:0 4px 20px rgba(0,0,0,.08);">
+                                                                                                                                        box-shadow:0 4px 20px rgba(0,0,0,.08);">
                         <table style="width:100%;min-width:480px;border-collapse:collapse;background:#fff;font-size:.9rem;">
                             <thead>
                                 <tr style="background:linear-gradient(90deg, #66003b, #66003b);">
@@ -104,7 +106,7 @@
                                             <span style="display:inline-flex;align-items:center;gap:7px;">
                                                 <span
                                                     style="display:inline-block;width:8px;height:8px;border-radius:50%;
-                                                                                                                                                                                        background:{{ str_contains(strtolower($fee->type), 'combo') ? '#ff6700' : '#0369a1' }};"></span>
+                                                                                                                                                                                                                background:{{ str_contains(strtolower($fee->type), 'combo') ? '#ff6700' : '#0369a1' }};"></span>
                                                 {{ $fee->type }}
                                             </span>
                                         </td>

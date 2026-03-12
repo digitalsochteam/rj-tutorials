@@ -1,5 +1,5 @@
 @extends('Frontend.layout.main')
-@section('title', ($post->meta_title ?: $post->title) . ' | RJ TUTORIALS')
+@section('title', $post->meta_title ?: $post->title)
 @push('meta')
     {{-- Primary SEO --}}
     <meta name="description"
