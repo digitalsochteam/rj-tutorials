@@ -1,15 +1,17 @@
 @extends('Frontend.layout.main')
 
-@section('title', ($seo->meta_title ?: 'Gallery') . ' | RJ TUTORIALS')
+@section('title', $seo->meta_title ?: 'Gallery')
 
 @push('meta')
-    <meta name="description" content="{{ $seo->meta_description ?: 'Browse photos and videos from RJ Tutorials — classrooms, events, achievements and campus life.' }}">
+    <meta name="description"
+        content="{{ $seo->meta_description ?: 'Browse photos and videos from RJ Tutorials — classrooms, events, achievements and campus life.' }}">
     @if($seo->meta_keywords)
-    <meta name="keywords" content="{{ $seo->meta_keywords }}">
+        <meta name="keywords" content="{{ $seo->meta_keywords }}">
     @endif
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ $seo->meta_title ?: 'Gallery | RJ TUTORIALS' }}">
-    <meta property="og:description" content="{{ $seo->meta_description ?: 'Browse photos and videos from RJ Tutorials — classrooms, events, achievements and campus life.' }}">
+    <meta property="og:description"
+        content="{{ $seo->meta_description ?: 'Browse photos and videos from RJ Tutorials — classrooms, events, achievements and campus life.' }}">
     <meta property="og:url" content="{{ url()->current() }}">
 @endpush
 
@@ -595,57 +597,57 @@
         }
 
         function shiftLightbox(dir) {
-                const items = getVisibleItems();
-                const next = lbIndex + dir;
-                if (next < 0 || next >= items.length) return;
-                lbIndex = next;
-                lbImg.classList.add('fading');
-                setTimeout(() => {
-                    updateLightbox(items);
-                    lbImg.classList.remove('fading');
-                }, 220);
-            }
+            const items = getVisibleItems();
+            const next = lbIndex + dir;
+            if (next < 0 || next >= items.length) return;
+            lbIndex = next;
+            lbImg.classList.add('fading');
+            setTimeout(() => {
+                updateLightbox(items);
+                lbImg.classList.remove('fading');
+            }, 220);
+        }
 
-            function updateLightbox(items) {
-                const el = items[lbIndex];
-                const img = el.querySelector('.gallery-card__img');
-                const label = el.querySelector('.gallery-card__label');
-                const cat = el.querySelector('.gallery-card__cat');
+        function updateLightbox(items) {
+            const el = items[lbIndex];
+            const img = el.querySelector('.gallery-card__img');
+            const label = el.querySelector('.gallery-card__label');
+            const cat = el.querySelector('.gallery-card__cat');
 
-                lbImg.src = img ? img.src : '';
-                lbImg.alt = img ? img.alt : '';
-                document.getElementById('lbTitle').textContent = label ? label.textContent : '';
-                document.getElementById('lbCat').textContent = cat ? cat.textContent : '';
-                document.getElementById('lbCounter').textContent = (lbIndex + 1) + ' / ' + items.length;
+            lbImg.src = img ? img.src : '';
+            lbImg.alt = img ? img.alt : '';
+            document.getElementById('lbTitle').textContent = label ? label.textContent : '';
+            document.getElementById('lbCat').textContent = cat ? cat.textContent : '';
+            document.getElementById('lbCounter').textContent = (lbIndex + 1) + ' / ' + items.length;
 
-                document.getElementById('lbPrev').disabled = lbIndex === 0;
-                document.getElementById('lbNext').disabled = lbIndex === items.length - 1;
-            }
+            document.getElementById('lbPrev').disabled = lbIndex === 0;
+            document.getElementById('lbNext').disabled = lbIndex === items.length - 1;
+        }
 
-            /* ─── Keyboard navigation ─── */
-            document.addEventListener('keydown', e => {
-                if (!lightbox.classList.contains('open')) return;
-                if (e.key === 'ArrowLeft') shiftLightbox(-1);
-                if (e.key === 'ArrowRight') shiftLightbox(1);
-                if (e.key === 'Escape') closeLightbox();
+        /* ─── Keyboard navigation ─── */
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'ArrowLeft') shiftLightbox(-1);
+            if (e.key === 'ArrowRight') shiftLightbox(1);
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        /* Re-index onclick after filter already ran once on load */
+        document.addEventListener('DOMContentLoaded', () => {
+            getVisibleItems().forEach((el, i) => {
+                el.querySelector('.gallery-card').setAttribute('onclick', `openLightbox(${i})`);
             });
-
-            /* Re-index onclick after filter already ran once on load */
-            document.addEventListener('DOMContentLoaded', () => {
-                getVisibleItems().forEach((el, i) => {
-                    el.querySelector('.gallery-card').setAttribute('onclick', `openLightbox(${i})`);
-                });
-                /* Also re-index when filter changes */
-                document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        setTimeout(() => {
-                            getVisibleItems().forEach((el, i) => {
-                                el.querySelector('.gallery-card').setAttribute('onclick', `openLightbox(${i})`);
-                            });
-                        }, 50);
-                    });
+            /* Also re-index when filter changes */
+            document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setTimeout(() => {
+                        getVisibleItems().forEach((el, i) => {
+                            el.querySelector('.gallery-card').setAttribute('onclick', `openLightbox(${i})`);
+                        });
+                    }, 50);
                 });
             });
+        });
     </script>
 
 @endsection
