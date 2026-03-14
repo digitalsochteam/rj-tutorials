@@ -43,10 +43,9 @@
                             <div class="team-one__img-box">
                                 <div class="team-one__img">
                                     <img src="{{ $member->photo ? asset('storage/' . $member->photo) : asset('assets/images/team/team-1-' . ($loop->iteration) . '.jpg') }}"
-                                        alt="{{ $member->name }}"
-                                        style="width: 100%; height: 300px; object-fit: cover;">
+                                        alt="{{ $member->name }}" style="width: 100%; height: 300px; object-fit: cover;">
                                 </div>
-                                <div class="team-one__arrow-and-social">
+                                {{-- <div class="team-one__arrow-and-social">
                                     <div class="team-one__arrow">
                                         <span class="icon-share"></span>
                                     </div>
@@ -56,7 +55,7 @@
                                         <li><a href="#"><span class="icon-pinterest"></span></a></li>
                                         <li><a href="#"><span class="icon-linkedin"></span></a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="team-one__content">
                                 <div class="team-one__content-bg-shape"
@@ -125,7 +124,7 @@
                     <div class="director-card p-5">
 
                         <h3 class="mb-4 fw-bold">R J Tutorials: Empowering Education for All</h3>
-
+                        <h4 style="font-weight: bold;margin-bottom:20px;">No. Of years experience 10</h4>
                         <p>
                             Dr. Rohit Jain, a dedicated emergency physician and educator, has taken a remarkable initiative
                             to bridge the gap in quality education. R J Tutorials, founded by Dr. Jain, aims to provide
@@ -163,14 +162,19 @@
 
                         <p>Contact R J Tutorials today to learn more about our courses and batches.</p>
 
-                        <ul class="list-unstyled mt-3">
+                        {{-- <ul class="list-unstyled mt-3">
                             <li><strong>Phone:</strong> insert phone number</li>
                             <li><strong>Email:</strong> insert email</li>
                             <li><strong>Address:</strong> insert address</li>
-                        </ul>
+                        </ul> --}}
 
                         <p class="mt-3"><strong>Let's work together to create a brighter future for all!</strong></p>
 
+                        <div class="text-end mt-4">
+                            <strong>Dr. Rohit Jain</strong><br>
+                            {{-- <span>MBBS, MD (Emergency Medicine), DNB (Emergency Medicine)</span><br> --}}
+                            <span>Owner, RJ Tutorials</span>
+                        </div>
                     </div>
 
                 </div>

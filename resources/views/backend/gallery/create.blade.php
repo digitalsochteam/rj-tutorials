@@ -98,17 +98,15 @@
         <div class="form-card" id="section-image">
             <div class="form-card-header">
                 <div class="form-card-title">Photo <span style="color:#dc2626;">*</span></div>
-                <div class="form-card-sub">Recommended: 800×600px. Max 3 MB.</div>
+                <div class="form-card-sub">Select one or multiple images. Max 3 MB each.</div>
             </div>
             <div class="form-body">
                 <div class="form-group">
-                    <label>Upload Image</label>
-                    <input type="file" name="image" id="image-input" accept="image/*"
-                        onchange="previewFile(this,'prev_image','img_preview_wrap','img')">
-                    <div class="img-preview" id="img_preview_wrap" style="display:none;">
-                        <img id="prev_image" src="" alt="Preview">
-                        <span>Preview</span>
-                    </div>
+                    <label>Upload Image(s)</label>
+                    <input type="file" name="images[]" id="image-input" accept="image/*" multiple
+                        onchange="previewImages(this)">
+                    <div id="multi-preview-wrap"
+                        style="display:none;margin-top:.75rem;display:flex;flex-wrap:wrap;gap:.75rem;"></div>
                 </div>
             </div>
         </div>
@@ -128,15 +126,6 @@
                     <div id="video_preview_wrap" style="display:none;margin-top:.75rem;">
                         <video id="prev_video" controls
                             style="width:100%;max-width:480px;border-radius:10px;background:#000;"></video>
-                    </div>
-                </div>
-                <div class="form-group" style="margin-top:1rem;">
-                    <label>Thumbnail Image <small style="color:#94a3b8;">(optional)</small></label>
-                    <input type="file" name="image" accept="image/*"
-                        onchange="previewFile(this,'prev_thumb','thumb_preview_wrap','img')">
-                    <div class="img-preview" id="thumb_preview_wrap" style="display:none;">
-                        <img id="prev_thumb" src="" alt="Thumbnail">
-                        <span>Thumbnail Preview</span>
                     </div>
                 </div>
             </div>
@@ -164,15 +153,6 @@
                             style="position:relative;padding-bottom:56.25%;height:0;border-radius:10px;overflow:hidden;background:#000;">
                             <iframe id="yt-preview-iframe" src="" frameborder="0" allowfullscreen
                                 style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-                        </div>
-                    </div>
-                    <div class="form-group full">
-                        <label>Custom Thumbnail <small style="color:#94a3b8;">(optional)</small></label>
-                        <input type="file" name="image" accept="image/*"
-                            onchange="previewFile(this,'prev_url_thumb','url_thumb_wrap','img')">
-                        <div class="img-preview" id="url_thumb_wrap" style="display:none;">
-                            <img id="prev_url_thumb" src="" alt="Thumbnail">
-                            <span>Thumbnail Preview</span>
                         </div>
                     </div>
                 </div>
@@ -362,17 +342,15 @@
         <div class="form-card" id="section-image">
             <div class="form-card-header">
                 <div class="form-card-title">Photo <span style="color:#dc2626;">*</span></div>
-                <div class="form-card-sub">Recommended: 800×600px. Max 3 MB.</div>
+                <div class="form-card-sub">Select one or multiple images. Max 3 MB each.</div>
             </div>
             <div class="form-body">
                 <div class="form-group">
-                    <label>Upload Image</label>
-                    <input type="file" name="image" id="image-input" accept="image/*"
-                        onchange="previewImage(this,'prev_image','img_preview_wrap')">
-                    <div class="img-preview" id="img_preview_wrap" style="display:none;">
-                        <img id="prev_image" src="" alt="Preview">
-                        <span>Preview</span>
-                    </div>
+                    <label>Upload Image(s)</label>
+                    <input type="file" name="images[]" id="image-input" accept="image/*" multiple
+                        onchange="previewImages(this)">
+                    <div id="multi-preview-wrap"
+                        style="display:none;margin-top:.75rem;display:flex;flex-wrap:wrap;gap:.75rem;"></div>
                 </div>
             </div>
         </div>
@@ -401,16 +379,6 @@
                                 style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
                         </div>
                     </div>
-                    <div class="form-group full">
-                        <label>Custom Thumbnail <small style="color:#94a3b8;">(optional — YouTube auto-thumbnail used if
-                                blank)</small></label>
-                        <input type="file" name="image" accept="image/*"
-                            onchange="previewImage(this,'prev_thumb','thumb_preview_wrap')">
-                        <div class="img-preview" id="thumb_preview_wrap" style="display:none;">
-                            <img id="prev_thumb" src="" alt="Thumbnail Preview">
-                            <span>Thumbnail Preview</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -434,9 +402,7 @@
             document.getElementById('section-image').style.display = isVideo ? 'none' : '';
             document.getElementById('section-video').style.display = isVideo ? '' : 'none';
 
-            // Toggle image required
-            const imgInput = document.getElementById('image-input');
-            if (imgInput) imgInput.required = !isVideo;
+            // No required toggle needed — server validates images[]
 
             // Toggle video_url required
             const vInput = document.getElementById('video_url_input');
@@ -477,13 +443,22 @@
             }
         });
 
-        function previewImage(input, previewId, wrapId) {
-            const reader = new FileReader();
-            reader.onload = e => {
-                document.getElementById(previewId).src = e.target.result;
-                document.getElementById(wrapId).style.display = 'flex';
-            };
-            if (input.files[0]) reader.readAsDataURL(input.files[0]);
+        function previewImages(input) {
+            const wrap = document.getElementById('multi-preview-wrap');
+            wrap.innerHTML = '';
+            if (!input.files.length) { wrap.style.display = 'none'; return; }
+            wrap.style.display = 'flex';
+            Array.from(input.files).forEach((file, i) => {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    const box = document.createElement('div');
+                    box.style.cssText = 'text-align:center;';
+                    box.innerHTML = `<img src="${e.target.result}" style="width:120px;height:90px;object-fit:cover;border-radius:8px;border:2px solid #e2e8f0;">
+                        <div style="font-size:.72rem;color:#64748b;margin-top:.3rem;">${file.name}</div>`;
+                    wrap.appendChild(box);
+                };
+                reader.readAsDataURL(file);
+            });
         }
     </script>
 @endsection

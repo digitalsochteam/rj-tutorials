@@ -52,17 +52,35 @@ class GalleryController extends Controller
                     : null;
             }
         } else {
-            $data = $request->validate([
+            $request->validate([
                 'title'      => 'required|string|max:255',
                 'category'   => 'required|string|max:100',
-                'image'      => 'required|image|max:3072',
+                'images'     => 'required|array|min:1',
+                'images.*'   => 'image|max:3072',
                 'sort_order' => 'nullable|integer|min:0',
                 'is_active'  => 'nullable|boolean',
             ]);
-            $data['media_type'] = 'image';
-            $data['image']      = $request->file('image')->store('gallery', 'public');
-            $data['video_url']  = null;
-            $data['video_file'] = null;
+
+            $isActive  = $request->boolean('is_active', true);
+            $sortOrder = $request->input('sort_order', 0);
+            $count     = 0;
+
+            foreach ($request->file('images') as $file) {
+                GalleryImage::create([
+                    'title'      => $request->input('title'),
+                    'category'   => $request->input('category'),
+                    'media_type' => 'image',
+                    'image'      => $file->store('gallery', 'public'),
+                    'video_url'  => null,
+                    'video_file' => null,
+                    'is_active'  => $isActive,
+                    'sort_order' => $sortOrder,
+                ]);
+                $count++;
+            }
+
+            return redirect()->route('dashboard', ['panel' => 'gallery'])
+                ->with('gallery_success', $count === 1 ? 'Image uploaded successfully.' : "$count images uploaded successfully.");
         }
 
         $data['is_active']  = $request->boolean('is_active', true);
@@ -71,7 +89,7 @@ class GalleryController extends Controller
         GalleryImage::create($data);
 
         return redirect()->route('dashboard', ['panel' => 'gallery'])
-            ->with('gallery_success', $isVideo ? 'Video added successfully.' : 'Image uploaded successfully.');
+            ->with('gallery_success', 'Video added successfully.');
     }
 
     public function edit(GalleryImage $gallery)

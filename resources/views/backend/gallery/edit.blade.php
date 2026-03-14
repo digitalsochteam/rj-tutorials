@@ -143,20 +143,6 @@
                             style="width:100%;max-width:480px;border-radius:10px;background:#000;"></video>
                     </div>
                 </div>
-                <div class="form-group" style="margin-top:1rem;">
-                    <label>Thumbnail Image <small style="color:#94a3b8;">(optional)</small></label>
-                    <input type="file" name="image" accept="image/*"
-                        onchange="previewFile(this,'prev_thumb','thumb_preview_wrap','img')">
-                    <div class="img-preview" id="thumb_preview_wrap" {{ $gallery->image ? '' : 'style="display:none;"' }}>
-                        @if($gallery->image)
-                            <img id="prev_thumb" src="{{ asset('storage/' . $gallery->image) }}" alt="Thumbnail">
-                            <span>Current thumbnail</span>
-                        @else
-                            <img id="prev_thumb" src="" alt="Thumbnail">
-                            <span>Thumbnail Preview</span>
-                        @endif
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -184,20 +170,6 @@
                             <iframe id="yt-preview-iframe" src="{{ $gallery->embed_url ?? '' }}"
                                 frameborder="0" allowfullscreen
                                 style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-                        </div>
-                    </div>
-                    <div class="form-group full">
-                        <label>Custom Thumbnail <small style="color:#94a3b8;">(optional)</small></label>
-                        <input type="file" name="image" accept="image/*"
-                            onchange="previewFile(this,'prev_url_thumb','url_thumb_wrap','img')">
-                        <div class="img-preview" id="url_thumb_wrap" {{ $gallery->image ? '' : 'style="display:none;"' }}>
-                            @if($gallery->image)
-                                <img id="prev_url_thumb" src="{{ asset('storage/' . $gallery->image) }}" alt="Thumbnail">
-                                <span>Current thumbnail</span>
-                            @else
-                                <img id="prev_url_thumb" src="" alt="Thumbnail">
-                                <span>Thumbnail Preview</span>
-                            @endif
                         </div>
                     </div>
                 </div>
