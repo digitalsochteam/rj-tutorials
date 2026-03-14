@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/resources/logo-1.png" />
 
 
+
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -60,4 +61,14 @@
     <!-- template styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
+    <!-- Google tag (gtag.js) -->
+    <meta name="google-site-verification" content="IHmQNFe_wQekUovKpgWLigMeXg0GJ96GtjphfhUXvY0" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKEMH48X9W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-TKEMH48X9W');
+    </script>
 </head>
