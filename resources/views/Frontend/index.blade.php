@@ -495,16 +495,16 @@
                 <h2 class="section-title__title title-animation">From the <span>Director's Desk</span>
                 </h2>
             </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 @forelse($team as $member)
                     <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="{{ $loop->index * 100 }}ms">
                         <div class="team-one__single">
                             <div class="team-one__img-box">
                                 <div class="team-one__img">
                                     <img src="{{ $member->photo ? asset('storage/' . $member->photo) : asset('assets/images/team/team-1-' . ($loop->iteration) . '.jpg') }}"
-                                        alt="{{ $member->name }}">
+                                        alt="{{ $member->name }}" style="width: 100%; height: 300px; object-fit: cover;">
                                 </div>
-                                <div class="team-one__arrow-and-social">
+                                {{-- <div class="team-one__arrow-and-social">
                                     <div class="team-one__arrow">
                                         <span class="icon-share"></span>
                                     </div>
@@ -514,7 +514,7 @@
                                         <li><a href="#"><span class="icon-pinterest"></span></a></li>
                                         <li><a href="#"><span class="icon-linkedin"></span></a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="team-one__content">
                                 <div class="team-one__content-bg-shape"
@@ -530,7 +530,6 @@
                         <p style="color:#64748b;">No team members found.</p>
                     </div>
                 @endforelse
-
             </div>
         </div>
     </section>
