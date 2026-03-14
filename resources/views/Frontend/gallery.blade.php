@@ -64,21 +64,25 @@
 
                 @forelse($images as $image)
                     @if($image->isVideo())
-                        {{-- Video card --}}
+                        {{-- Video card — embedded directly --}}
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 gallery-item"
-                            data-category="{{ Str::lower($image->category) }}" data-type="video"
-                            data-embed="{{ $image->embed_url }}" data-video-src="{{ $image->video_src }}"
-                            data-title="{{ $image->title }}" data-cat="{{ $image->category }}">
-                            <div class="gallery-card" onclick="openVideoLightbox(this)">
-
-                                <div class="gallery-card__overlay">
-                                    <div class="gallery-card__overlay-inner">
-                                        <span class="gallery-card__zoom gallery-card__play"><i class="fas fa-play"></i></span>
-                                        <div class="gallery-card__label">{{ $image->title }}</div>
-                                        <div class="gallery-card__cat">{{ $image->category }}</div>
+                            data-category="{{ Str::lower($image->category) }}" data-type="video">
+                            <div class="gallery-video-embed-card">
+                                @if($image->isLocalVideo())
+                                    <video controls style="width:100%;height:220px;object-fit:cover;border-radius:12px;background:#000;display:block;">
+                                        <source src="{{ $image->video_src }}" type="video/mp4">
+                                    </video>
+                                @else
+                                    <div style="position:relative;padding-bottom:56.25%;height:0;border-radius:12px;overflow:hidden;background:#000;">
+                                        <iframe src="{{ $image->embed_url }}" frameborder="0" allowfullscreen
+                                            allow="autoplay; encrypted-media"
+                                            style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
                                     </div>
+                                @endif
+                                <div class="gallery-video-embed-label">
+                                    <div class="gallery-card__label">{{ $image->title }}</div>
+                                    <div class="gallery-card__cat">{{ $image->category }}</div>
                                 </div>
-                                <span class="gallery-video-badge"><i class="fas fa-play-circle"></i> Video</span>
                             </div>
                         </div>
                     @else
@@ -166,6 +170,24 @@
     <!-- /Lightbox -->
 
     <style>
+        /* ── Embedded video card ── */
+        .gallery-video-embed-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .09);
+            background: #fff;
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        .gallery-video-embed-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, .16);
+        }
+
+        .gallery-video-embed-label {
+            padding: .6rem .85rem .75rem;
+        }
+
         /* ── Video badge ── */
         .gallery-video-badge {
             position: absolute;
