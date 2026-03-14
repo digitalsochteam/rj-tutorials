@@ -43,7 +43,8 @@
                             <div class="team-one__img-box">
                                 <div class="team-one__img">
                                     <img src="{{ $member->photo ? asset('storage/' . $member->photo) : asset('assets/images/team/team-1-' . ($loop->iteration) . '.jpg') }}"
-                                        alt="{{ $member->name }}">
+                                        alt="{{ $member->name }}"
+                                        style="width: 100%; height: 300px; object-fit: cover;">
                                 </div>
                                 <div class="team-one__arrow-and-social">
                                     <div class="team-one__arrow">
@@ -75,6 +76,107 @@
         </div>
     </section>
     <!--Team One End -->
+
+    <section class="owner-message-section py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+
+                    <div class="director-card p-5">
+
+                        <h3 class="mb-4 fw-bold">Owner's Message – RJ Tutorials</h3>
+
+                        <p>
+                            At RJ Tutorials, we believe that every student deserves quality education, guidance, and
+                            encouragement to achieve their dreams. Our institute is built on the values of inclusiveness,
+                            equality, and respect, where every student is welcomed and supported irrespective of their
+                            background.
+                        </p>
+
+                        <p>
+                            We guide students from Class 8 to 12 and prepare them for competitive examinations such as JEE,
+                            NEET, and MHCET through strong conceptual teaching, disciplined learning, and personal
+                            attention.
+                        </p>
+
+                        <p>
+                            Our goal is not only academic success but also to build confidence, determination, and a love
+                            for learning in every student.
+                        </p>
+
+                        <div class="text-end mt-4">
+                            <strong>Neelima Jain</strong><br>
+                            <span>M.Com, PGDBA, Associateship</span><br>
+                            <span>Owner, RJ Tutorials</span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="rj-about-section py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+
+                    <div class="director-card p-5">
+
+                        <h3 class="mb-4 fw-bold">R J Tutorials: Empowering Education for All</h3>
+
+                        <p>
+                            Dr. Rohit Jain, a dedicated emergency physician and educator, has taken a remarkable initiative
+                            to bridge the gap in quality education. R J Tutorials, founded by Dr. Jain, aims to provide
+                            high-quality education to students from all economic backgrounds at an affordable price.
+                        </p>
+
+                        <h5 class="fw-bold mt-4 mb-2">Mission:</h5>
+                        <p>
+                            To empower students from economically weaker sections of society by providing them with quality
+                            education, enabling them to pursue their desired careers.
+                        </p>
+
+                        <h5 class="fw-bold mt-4 mb-2">Goal:</h5>
+                        <p>
+                            To make quality education accessible to all, regardless of financial constraints, and help
+                            students achieve their academic and professional goals.
+                        </p>
+
+                        <h5 class="fw-bold mt-4 mb-2">Key Features:</h5>
+                        <ul>
+                            <li>Expert faculty, including Dr. Rohit Jain, with extensive experience in education and
+                                medicine</li>
+                            <li>Comprehensive study materials and resources</li>
+                            <li>Small batch sizes for personalized attention</li>
+                            <li>Affordable fees structure, making quality education accessible to all</li>
+                        </ul>
+
+                        <h5 class="fw-bold mt-4 mb-2">Why R J Tutorials?</h5>
+                        <p>
+                            At R J Tutorials, we believe that quality education should be a right, not a privilege. Our aim
+                            is to support students in achieving their dreams, regardless of their financial background.
+                        </p>
+
+                        <p>Join us in our mission to empower education for all.</p>
+
+                        <p>Contact R J Tutorials today to learn more about our courses and batches.</p>
+
+                        <ul class="list-unstyled mt-3">
+                            <li><strong>Phone:</strong> insert phone number</li>
+                            <li><strong>Email:</strong> insert email</li>
+                            <li><strong>Address:</strong> insert address</li>
+                        </ul>
+
+                        <p class="mt-3"><strong>Let's work together to create a brighter future for all!</strong></p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <section class="director-section py-5">
@@ -113,4 +215,6 @@
             </div>
         </div>
     </section>
+
+
 @endsection
