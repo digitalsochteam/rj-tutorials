@@ -356,9 +356,8 @@
                             </div>
                             <div class="why-choose-one__client-active">
                                 <div class="why-choose-one__client-count-box">
-                                    <h3 class="odometer" data-count="13">00</h3>
-                                    <span>K</span>
-                                    <span>+</span>
+                                    <h3 class="odometer" data-count="300">00</h3>
+
                                 </div>
                                 <p class="why-choose-one__client-text">Active Students</p>
                             </div>
