@@ -70,7 +70,7 @@
                             data-embed="{{ $image->embed_url }}" data-video-src="{{ $image->video_src }}"
                             data-title="{{ $image->title }}" data-cat="{{ $image->category }}">
                             <div class="gallery-card" onclick="openVideoLightbox(this)">
-                                <img src="{{ $image->thumbnail }}" alt="{{ $image->title }}" class="gallery-card__img">
+
                                 <div class="gallery-card__overlay">
                                     <div class="gallery-card__overlay-inner">
                                         <span class="gallery-card__zoom gallery-card__play"><i class="fas fa-play"></i></span>
