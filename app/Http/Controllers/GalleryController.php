@@ -14,8 +14,18 @@ class GalleryController extends Controller
         return view('backend.gallery.create', compact('type'));
     }
 
+    private function resolveCategory(Request $request): string
+    {
+        $cat = $request->input('category', 'General');
+        if ($cat === '__other__') {
+            $cat = trim($request->input('category_custom', 'General')) ?: 'General';
+        }
+        return $cat;
+    }
+
     public function store(Request $request)
     {
+        $request->merge(['category' => $this->resolveCategory($request)]);
         $isVideo = $request->input('media_type') === 'video';
 
         if ($isVideo) {
@@ -99,6 +109,7 @@ class GalleryController extends Controller
 
     public function update(Request $request, GalleryImage $gallery)
     {
+        $request->merge(['category' => $this->resolveCategory($request)]);
         $isVideo = $request->input('media_type') === 'video';
 
         if ($isVideo) {

@@ -48,7 +48,7 @@ Route::get('/team', function () {
 })->name('team');
 
 Route::get('/gallery', function () {
-    $images  = GalleryImage::active()->get();
+    $images  = GalleryImage::active()->orderBy('title')->get();
     $seo     = PageSeo::for('gallery');
     return view('Frontend.gallery', compact('images', 'seo'));
 })->name('gallery');

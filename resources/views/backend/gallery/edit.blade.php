@@ -82,8 +82,22 @@
                     </div>
                     <div class="form-group full">
                         <label>Category <span style="color:#dc2626;">*</span></label>
-                        <input type="text" name="category" value="{{ old('category', $gallery->category) }}"
-                            placeholder="e.g. Events, Classroom, Achievements" required>
+                        @php
+                            $cats = ['Student Achievement','General','Events','Classroom','Campus','Competitions','Annual Day'];
+                            $oldCat = old('category', $gallery->category);
+                        @endphp
+                        <select name="category" id="category-select" required
+                            onchange="toggleCustomCategory(this)"
+                            style="width:100%;padding:.55rem .75rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.875rem;background:#fff;color:#1e293b;">
+                            @foreach($cats as $cat)
+                                <option value="{{ $cat }}" {{ $oldCat === $cat ? 'selected' : '' }}>{{ $cat }}</option>
+                            @endforeach
+                            <option value="__other__" {{ !in_array($oldCat, $cats) ? 'selected' : '' }}>Other (custom)…</option>
+                        </select>
+                        <input type="text" name="category_custom" id="category-custom"
+                            value="{{ !in_array($oldCat, $cats) ? $oldCat : '' }}"
+                            placeholder="Type custom category name"
+                            style="margin-top:.5rem;width:100%;padding:.55rem .75rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.875rem;{{ in_array($oldCat, $cats) ? 'display:none;' : '' }}">
                     </div>
                     <div class="form-group" style="display:flex;align-items:center;gap:.75rem;padding-top:1rem;">
                         <label style="display:flex;align-items:center;gap:.6rem;cursor:pointer;">
@@ -184,6 +198,18 @@
     </form>
 
     <script>
+        function toggleCustomCategory(sel) {
+            const custom = document.getElementById('category-custom');
+            if (sel.value === '__other__') {
+                custom.style.display = '';
+                custom.required = true;
+            } else {
+                custom.style.display = 'none';
+                custom.required = false;
+                custom.value = '';
+            }
+        }
+
         const initialType = '{{ old('media_type', $gallery->media_type ?? 'image') }}';
         const initialVSrc = '{{ $currentVSrc }}';
         setMediaType(initialType, initialVSrc);
