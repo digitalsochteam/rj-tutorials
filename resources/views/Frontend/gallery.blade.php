@@ -69,7 +69,7 @@
                             data-category="{{ Str::lower($image->category) }}" data-type="video">
                             <div class="gallery-video-embed-card">
                                 @if($image->isLocalVideo())
-                                    <video controls style="width:100%;height:220px;object-fit:cover;border-radius:12px;background:#000;display:block;">
+                                    <video controls style="width:100%;border-radius:12px;background:#000;display:block;">
                                         <source src="{{ $image->video_src }}" type="video/mp4">
                                     </video>
                                 @else
