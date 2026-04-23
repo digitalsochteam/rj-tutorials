@@ -166,6 +166,59 @@
     </section>
     <!--About One End -->
 
+    <!-- Mission & Vision Start -->
+    <section class="py-5" style="background:#f8f4f0;">
+        <div class="container">
+            <div class="section-title text-center sec-title-animation animation-style1 mb-4">
+                <div class="section-title__tagline-box">
+                    <span class="section-title__tagline">Who We Are</span>
+                </div>
+                <h2 class="section-title__title title-animation">Our <span>Mission & Vision</span></h2>
+            </div>
+
+            <div class="row g-4 align-items-stretch">
+                <!-- Mission -->
+                <div class="col-md-6 wow fadeInLeft" data-wow-delay="100ms">
+                    <div class="d-flex h-100" style="background:#66003b; border-radius:8px; overflow:hidden;">
+                        <div class="p-4 p-lg-5 d-flex flex-column justify-content-center">
+                            <div class="mb-3">
+                                <span class="fas fa-bullseye fa-2x" style="color:#e8a87c;"></span>
+                            </div>
+                            <h3 class="fw-bold mb-3" style="color:#fff;">Mission</h3>
+                            <p class="mb-0 fs-6" style="color:rgba(255,255,255,.88); line-height:1.8;">
+                                Empowering every student with accessible, affordable and exceptional education,
+                                academic excellence &amp; lifelong success.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vision -->
+                <div class="col-md-6 wow fadeInRight" data-wow-delay="200ms">
+                    <div class="d-flex h-100" style="background:#66003b; border-radius:8px; overflow:hidden;">
+                        <div class="p-4 p-lg-5 d-flex flex-column justify-content-center">
+                            <div class="mb-3">
+                                <span class="fas fa-eye fa-2x" style="color:#e8a87c;"></span>
+                            </div>
+                            <h3 class="fw-bold mb-3" style="color:#fff;">Vision</h3>
+                            <p class="mb-0 fs-6" style="color:rgba(255,255,255,.88); line-height:1.8;">
+                                Envisioning a nation where every individual has access to quality education,
+                                empowering them to reach their full potential &amp; creating a brighter future for all.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="{{ route('about') }}" class="thm-btn">Know More About Us
+                    <span class="fas fa-arrow-right"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Mission & Vision End -->
+
     <!--Services Page Start -->
     <section class="services-page">
         <div class="container">
