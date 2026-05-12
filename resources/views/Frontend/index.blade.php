@@ -57,7 +57,7 @@
                     </p>
                     <div class="banner-one__btn-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
                         <div class="banner-one__btn">
-                            <a href="contact.html" class="thm-btn">Enquire Now
+                            <a href="#" onclick="showEnquiryPopup();return false;" class="thm-btn">Enquire Now
                                 <span class="fas fa-arrow-right"></span>
                             </a>
                         </div>

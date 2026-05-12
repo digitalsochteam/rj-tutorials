@@ -10,7 +10,7 @@ class RedirectToWww
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (!str_starts_with($request->getHost(), 'www.')) {
+        if (app()->isProduction() && !str_starts_with($request->getHost(), 'www.')) {
             $url = 'https://www.' . $request->getHost() . $request->getRequestUri();
             return redirect($url, 301);
         }

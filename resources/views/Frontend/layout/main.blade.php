@@ -63,11 +63,11 @@
             <i class="fas fa-comment-dots"></i>
             <span class="floating-btn__label">Enquire Now</span>
         </button>
-        <a href="https://wa.me/918879552477" class="floating-btn floating-whatsapp" target="_blank"
+        {{-- <a href="https://wa.me/918879552477" class="floating-btn floating-whatsapp" target="_blank"
             rel="noopener noreferrer" aria-label="Chat on WhatsApp">
             <i class="fab fa-whatsapp"></i>
             <span class="floating-btn__label">WhatsApp</span>
-        </a>
+        </a> --}}
         <a href="tel:+918929767497" class="floating-btn floating-call" aria-label="Call Us">
             <i class="fas fa-phone"></i>
             <span class="floating-btn__label">Call Us</span>
