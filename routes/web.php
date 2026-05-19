@@ -32,9 +32,9 @@ use App\Models\FeeStructure;
 Route::get('/', function () {
     $about        = AboutUs::instance();
     $homeSeo      = HomeSeo::instance();
-    $team         = TeamMember::where('is_active', true)->orderBy('sort_order')->get();
-    $courses      = Course::where('is_active', true)->orderBy('sort_order')->get();
-    $testimonials = Testimonial::active()->orderBy('sort_order')->get();
+    $team         = TeamMember::where('is_active', '=', true)->orderBy('sort_order', 'asc')->get();
+    $courses      = Course::where('is_active', '=', true)->orderBy('sort_order', 'asc')->get();
+    $testimonials = Testimonial::active()->orderBy('sort_order', 'asc')->get();
     return view('Frontend.index', compact('about', 'homeSeo', 'team', 'courses', 'testimonials'));
 });
 Route::get('/about', function () {
@@ -43,12 +43,12 @@ Route::get('/about', function () {
 })->name('about');
 
 Route::get('/team', function () {
-    $team = TeamMember::where('is_active', true)->orderBy('sort_order')->get();
+    $team = TeamMember::where('is_active', '=', true)->orderBy('sort_order', 'asc')->get();
     return view('Frontend.team', compact('team'));
 })->name('team');
 
 Route::get('/gallery', function () {
-    $images  = GalleryImage::active()->orderBy('title')->get();
+    $images  = GalleryImage::active()->orderBy('title', 'asc')->get();
     $seo     = PageSeo::for('gallery');
     return view('Frontend.gallery', compact('images', 'seo'));
 })->name('gallery');
@@ -60,7 +60,7 @@ Route::get('/blog', function () {
 })->name('blog');
 
 Route::get('/courses', function () {
-    $courses = Course::where('is_active', true)->orderBy('sort_order')->get();
+    $courses = Course::where('is_active', '=', true)->orderBy('sort_order', 'asc')->get();
     $seo     = PageSeo::for('courses');
     return view('Frontend.courses', compact('courses', 'seo'));
 })->name('courses');
@@ -146,14 +146,14 @@ Route::middleware('auth')->group(function () {
 // Fees page
 Route::get('/fees', function () {
     $feesContent = FeesContent::instance();
-    $feeGroups   = FeeStructure::active()->orderBy('sort_order')->get()->groupBy('course_name');
+    $feeGroups   = FeeStructure::active()->orderBy('sort_order', 'asc')->get()->groupBy('course_name');
     $seo         = PageSeo::for('fees');
     return view('Frontend.fees', compact('feesContent', 'feeGroups', 'seo'));
 })->name('fees');
 
 // Public blog detail — declared AFTER auth group so /blog/create resolves to the auth route above
 Route::get('/blog/{slug}', function (string $slug) {
-    $post = BlogPost::where('slug', $slug)->where('is_published', true)->firstOrFail();
+    $post = BlogPost::where('slug', '=', $slug)->where('is_published', '=', true)->firstOrFail();
     $allIds  = BlogPost::published()->pluck('id');
     $idx     = $allIds->search($post->id);
     $prev    = $idx > 0 ? BlogPost::find($allIds[$idx - 1]) : null;
@@ -165,13 +165,13 @@ Route::get('/blog/{slug}', function (string $slug) {
 
 // Public course detail — declared AFTER auth group so /courses/create resolves to the auth route above
 Route::get('/courses/{slug}', function (string $slug) {
-    $course = Course::where('slug', $slug)->where('is_active', true)->firstOrFail();
-    $allIds  = Course::where('is_active', true)->orderBy('sort_order')->pluck('id');
+    $course = Course::where('slug', '=', $slug)->where('is_active', '=', true)->firstOrFail();
+    $allIds  = Course::where('is_active', '=', true)->orderBy('sort_order', 'asc')->pluck('id');
     $idx     = $allIds->search($course->id);
     $prev    = $idx > 0 ? Course::find($allIds[$idx - 1]) : null;
     $next    = $idx < $allIds->count() - 1 ? Course::find($allIds[$idx + 1]) : null;
-    $otherCourses = Course::where('is_active', true)->where('id', '!=', $course->id)
-        ->orderBy('sort_order')->take(5)->get();
+    $otherCourses = Course::where('is_active', '=', true)->where('id', '!=', $course->id)
+        ->orderBy('sort_order', 'asc')->take(5)->get();
     return view('Frontend.course-detail', compact('course', 'prev', 'next', 'otherCourses'));
 })->name('courses.show');
 
